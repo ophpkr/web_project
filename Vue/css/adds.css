@@ -1,0 +1,48 @@
+input[type=text], select {
+    width: 25%;
+    hight : 
+    padding: 1% 1%;
+    margin: 1% 1%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+input[type=email], select {
+    width: 25%;
+    hight : 
+    padding: 1% 1%;
+    margin: 1% 1%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+
+[placeholder] {
+  font-style: italic;
+  opacity: 5;
+  color: #616161;
+}
+
+body{
+background-color: #F5FEE6;
+}
+
+.navbar{
+    background-color: #795548;
+}
+
+
+.numberInput{
+    width: 7.5%;
+    height: 5%;
+    padding: 1% 1%;
+    margin: 1% 1%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
