@@ -1,30 +1,29 @@
 input[type=text], select {
     width: 25%;
-    hight : 
+    height: 1%;
     padding: 1% 1%;
     margin: 1% 1%;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid #9e9e9e;
     border-radius: 10px;
     box-sizing: border-box;
 }
 
 input[type=email], select {
-    width: 25%;
-    hight : 
+    height: 1%;
     padding: 1% 1%;
     margin: 1% 1%;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid #9e9e9e;
     border-radius: 10px;
     box-sizing: border-box;
 }
 
 
-[placeholder] {
+input[placeholder] {
   font-style: italic;
   opacity: 5;
-  color: #616161;
+  color: #9e9e9e;
 }
 
 body{
@@ -46,3 +45,16 @@ background-color: #F5FEE6;
     border-radius: 10px;
     box-sizing: border-box;
 }
+
+input[type=date], select {
+    height: 1%;
+    padding: 1% 1%;
+    margin: 1% 1%;
+    display: inline-block;
+    border: 1px solid #9e9e9e;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+
+

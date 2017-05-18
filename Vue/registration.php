@@ -74,12 +74,12 @@
                   </select>
                 </div>
                 <div class= "col s12 center-align">
-                  <input class="with-gap" name="havepermit" type="checkbox" id="havepermit" oncheck=show(permit)/>
+                  <input class="with-gap" name="havepermit" type="checkbox" id="havepermit">
                   <label for="havepermit">J'ai une licence</label>
                 </div>
-                <div class="input-field col s12 center-align" id= "permit">
-                  <input placeholder="Numéro licence" type="text" class="validate" name="numpermit">
-                </div>
+                <div class="input-field col s12 center-align" >
+                  <input placeholder="Numéro licence" type="text" class="validate hide" name="numpermit" id= "permit">
+                </div> 
               </div>
               <div class= "center-align">
                 <button class = "waves-effect waves-light btn" type="submit">M'inscrire</button>
