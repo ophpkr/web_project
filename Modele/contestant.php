@@ -6,12 +6,14 @@ function addContestant($name, $firstname, $date, $sexe, $streetName, $pCode, $ci
 {
     $db = db_connection();
     //creation of an array containing data about the contestant
-    $data = array($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, $sizeBib, $numPermit, 0, NULL, NULL);
+    $data = 
 
-    $req = $db->prepare('INSERT INTO contestant(name, firstName, dBirth, sexe, streetName, pCode, city, email, telNum, sizeBib, numPermit, isAdmin, login, pwd)
-                        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+    $req = $db->prepare('INSERT INTO contestant(name, firstName, dBirth, sexe, streetName, pCode, city, email, telNum, sizeBib, numPermit, isAdmin)
+                        VALUES(:name,:firstname,:dBirth, :sexe, :streetName, :pCode, :city, :email, :telNum, :sizeBib, :numPermit, :isAdmin)');
     
- 	$req->execute($data);      
+ 	$req->execute(array(':name' => $name, ':firstname' => $firstname, ':dBirth' => $date, ':sexe' => $sexe,
+						':streetName' => $streetName, ':pCode' => $pCode, ':city' => $city, ':email' => $email,
+						':telNum' => $phone, ':sizeBib' => $sizeBib, ':numPermit' => $numPermit, ':isAdmin' => 0));      
     return 1;
     
 }
