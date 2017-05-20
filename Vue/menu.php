@@ -3,6 +3,9 @@
 
 <div>  
     <ul id= "nav-side" class= "side-nav fixed col s3  brown darken-1" >
+        <li>
+            <a href= "../Controller/deconnect.php" >Déconnexion</a>
+        </li>
         <li class= "logo">
             <a href= "tournament_management.php" class= "brand-logo">yo</a>
         </li>

@@ -22,7 +22,7 @@ function addRound($name, $coeff, $tournCorr)
     $req = $db->prepare('INSERT INTO course(nameRound, coeff, numTourn)
                         VALUES(:nameR,:coeff,:numtourn)');
     
-    $req->execute(array((':nameR'=>$name, (':coeff'=>$coeff, (':numTourn'=>$tournCorr));
+    $req->execute(array(':nameR'=>$name, ':coeff'=>$coeff, ':numTourn'=>$tournCorr));
     
     return 1;
 }

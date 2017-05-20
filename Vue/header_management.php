@@ -21,5 +21,13 @@
 		</head>
       
    </head>
-   <body> 
+   <body>
+	
+		<?php
+		if(!isset($_COOKIE["type"]))
+					{
+					 header("Location: ../Vue/homepage.php");
+					}
+		
+		?>
 	  

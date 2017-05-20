@@ -1,19 +1,25 @@
-    <div id="connect">
-        <a href="#connect" id = "estadmin">admin</a>
-        <div id ="login" class="hide">
-           
-            <input  placeholder="login" type="text" class="validate" name="login" required>
-           
-
-            <input placeholder="mot de passe" type="text" class="validate" name="pwd" required>
-
-            <button class = "waves-effect waves-light btn" type="submit">Se connecter</button>
-                
-        
-        </div>
-        
-    </div>
     
+	<footer>
+		
+		<div id="connect">
+			<a href="#connect" id = "estadmin">admin</a>
+			<form method="POST" action = "../Controller/admin_connection.php" >
+				<div id ="login" class="hide">
+				   
+					<input  placeholder="login" type="text" class="validate" name="login" required>
+				   
+		
+					<input placeholder="mot de passe" type="password" class="validate" name="pwd" required>
+		
+					<button class = "waves-effect waves-light btn" type="submit">Se connecter</button>
+						
+				
+				</div>
+			</form>
+				
+		</div>
+		
+    </footer>
     
  
  

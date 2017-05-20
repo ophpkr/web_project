@@ -1,4 +1,4 @@
-<?php require_once("../Modele/contestant.php"); ?>
+<?php require_once("../Modele/user.php"); ?>
 <?php require_once("./tools.php"); ?>
 
 <?php
@@ -26,7 +26,7 @@
             echo '2';
         }
     
-        if(!preg_match('/^[a-zA-Z-\s]+$/', $_POST['street']))
+        if(!preg_match('/^[0-9a-zA-Z-\s]+$/', $_POST['street']))
         {
             $msg = "La ville entrée est incorrecte \n Attention : les symboles '/', '-', '_' sont refusés";
             echo '3';
@@ -116,6 +116,8 @@
         {
             echo 'pas erreur';
             addContestant($_POST['name'], $_POST['firstname'], $date, $_POST['sexe'], $_POST['street'], $_POST['pcode'], $_POST['city'], $_POST['email'], $phone, $_POST['size'], $numPermit);
+            $msg = "Votre inscription a bien été prise en compte";
+            header("Location: ../Vue/registration.php?msg=" .$msg);
         }
         
         
