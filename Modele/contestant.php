@@ -18,6 +18,32 @@ function addContestant($name, $firstname, $date, $sexe, $streetName, $pCode, $ci
     
 }
 
+function getContestants()
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT *
+                        FROM contestant
+                        WHERE isAdmin == 0');
+    
+    $req->execute();
+    $nameTourn = $req->fetchall(PDO::FETCH_OBJ);
 
+    return $nameTourn;
+	
+}
+
+function checkGoodAdmin($login, $pwdhash) //the password given has to be hash before
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT *
+                        FROM contestant
+                        WHERE login =:login AND pwd=:pwd AND :isAdmin');
+    
+	$req->execute(array(':login' => $login,':pwd' => $pwd, ':isAdmin' => 1));
+	$res=$req->rowCount();
+	return $res;
+}
 
 ?>

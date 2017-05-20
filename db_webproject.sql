@@ -28,13 +28,6 @@ DROP TABLE IF EXISTS `tournament`;
 DROP TABLE IF EXISTS `registration`;
 DROP TABLE IF EXISTS `course`;
 DROP TABLE IF EXISTS `make`;
---ALTER TABLE registration DROP FOREIGN KEY `fk_contest_reg`;
---ALTER TABLE registration DROP FOREIGN KEY `fk_tourn_reg`;
---ALTER TABLE registration DROP FOREIGN KEY `fk_cat_reg` ;
---ALTER TABLE course DROP FOREIGN KEY `fk_tourn_round` ;
---ALTER TABLE make DROP FOREIGN KEY `fk_contest_make` ;
---ALTER TABLE make DROP FOREIGN KEY `fk_round_make` ;
-
 
 
 
@@ -63,13 +56,13 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 CREATE TABLE IF NOT EXISTS `contestant` (
   `numCont` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `firstName` varchar(30) NOT NULL,
+  `name` varchar(36) NOT NULL,
+  `firstName` varchar(32) NOT NULL,
   `dBirth` date NOT NULL,
   `sexe` char(1) NOT NULL,
-  `streetName` varchar(30) NOT NULL,
+  `streetName` varchar(32) NOT NULL,
   `pCode` int(5) UNSIGNED NOT NULL,
-  `city` varchar(45) NOT NULL,
+  `city` varchar(32) NOT NULL,
   `email` varchar(60) NOT NULL,
   `telNum` int(10) NOT NULL,
   `sizeBib` char(3) NOT NULL,
@@ -142,13 +135,13 @@ CREATE TABLE IF NOT EXISTS `registration` (
 
 
 CREATE TABLE IF NOT EXISTS `course` (
-  `numRound` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nameRound` varchar(15) NOT NULL,
+  `numCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nameCourse` varchar(15) NOT NULL,
   `coeff` int(2) UNSIGNED NOT NULL,
   `numTourn` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`numRound`),
+  PRIMARY KEY (`numCourse`),
   INDEX `numTourn` (`numTourn`),
-  CONSTRAINT fk_tourn_round
+  CONSTRAINT fk_tourn_course
     FOREIGN KEY (`numTourn`)
     REFERENCES tournament(`numTourn`)
 	ON DELETE CASCADE
@@ -165,18 +158,18 @@ CREATE TABLE IF NOT EXISTS `course` (
 
 CREATE TABLE IF NOT EXISTS `make` (
   `score` int(10) NOT NULL DEFAULT '0',
-  `numCont` int(10) UNSIGNED NOT NULL,
-  `numRound` int(10) UNSIGNED NOT NULL,
-  INDEX `numCont` (`numCont`),
-  INDEX `numRound` (`numRound`),
-  PRIMARY KEY (`numCont` , `numRound`),  
-  CONSTRAINT fk_contest_make
-    FOREIGN KEY (`numCont`)
-    REFERENCES contestant(`numCont`)
+  `numReg` int(10) UNSIGNED NOT NULL,
+  `numCourse` int(10) UNSIGNED NOT NULL,
+  INDEX `numReg` (`numReg`),
+  INDEX `numCourse` (`numCourse`),
+  PRIMARY KEY (`numReg` , `numCourse`),  
+  CONSTRAINT fk_regis_make
+    FOREIGN KEY (`numReg`)
+    REFERENCES registration(`numReg`)
 	ON DELETE CASCADE,
-  CONSTRAINT fk_round_make
-    FOREIGN KEY (`numRound`)
-    REFERENCES course(`numRound`)
+  CONSTRAINT fk_course_make
+    FOREIGN KEY (`numCourse`)
+    REFERENCES course(`numCourse`)
 	ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET= utf8;
 
