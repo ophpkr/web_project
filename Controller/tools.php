@@ -40,13 +40,13 @@ function getNameCourTourn()
     
 }
 
-function getNumCourTourn()
+/*function getNumCourTourn()
 {
     $NumTourn = getCurrentTourn()[0] -> numTourn;;
     
     return $NumTourn;
     
-}
+}*/
 
 
 function getNumsTourn()
@@ -100,49 +100,11 @@ function getNumsTournForReg()
     
 }
 
-function getNumRegNotPaidAsc()
-{
-    $list = array();
-    
-    $numcourTourn = getNumCourTourn();
-    $data =regNotPaid($numcourTourn);
-    for($i=0; $i< sizeof($data); $i++)
-        {
-            array_push($list, $data[$i]->numReg);
-        }
-    return $list;
-}
 
-function getNameRegNotPaidAsc()
-{
-    $list = array();
-   
-    $numcourTourn = getNumCourTourn();
-    $data =regNotPaid($numcourTourn); 
-    
-    for($i=0; $i< sizeof($data); $i++)
-        {
-            array_push($list, $data[$i]->name);
-        }
-    return $list;
-}
 
-function getFirstnameRegNotPaidAsc()
-{
-    $list = array();
-    
-    $numcourTourn = getNumCourTourn();
-    $data =regNotPaid($numcourTourn);
-    for($i=0; $i< sizeof($data); $i++)
-        {
-            array_push($list, $data[$i]->firstName);
-        }
-    return $list;
-}
 
-$numRegNotPaid = getNumRegNotPaidAsc();
-$nameRegNotPaid = getNameRegNotPaidAsc();
-$fNameRegNotPaid = getFirstnameRegNotPaidAsc();
+
+
 
 
 

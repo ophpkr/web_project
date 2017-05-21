@@ -65,7 +65,9 @@ function regPaid($numtourn)
                         FROM contestant AS co, registration AS reg
                         WHERE co.numCont = reg.numCont
 							AND reg.numTourn =:numtourn
-							AND reg.paid = 1');
+							AND reg.paid = 1
+						ORDER BY co.name ASC
+						');
     
     
     $req->execute(array(':numtourn' => $numtourn));
@@ -169,6 +171,7 @@ function notAP($numtourn)
 							AND tou.numTourn = reg.numTourn
 							AND reg.numTourn =:numtourn
 							AND reg.parentAut = 0
+						ORDER BY co.name ASC
 						');
     
     

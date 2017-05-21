@@ -16,6 +16,7 @@
                 <option class="collapsible-header waves-teal"><?php echo $nameCourTourn; ?></option>
                   <div class="collapsible-body ">
                     <ul >
+                      <li class= "brown lighten-1"><a href="#">Liste des inscrits</a></li>
                       <li class= "brown lighten-1"><a href="registration_management.php">Gérer les inscriptions</a></li>
                       <li class= "brown lighten-1"><a href="#">Gérer les manches</a></li>
                       <li class= "brown lighten-1"><a href="#">Résultats</a></li>

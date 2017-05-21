@@ -5,14 +5,15 @@ require_once("../Modele/round.php");
 require_once("../Controller/tools.php");
 require_once("../Modele/user.php");
 require_once('../Modele/registration.php');
+require_once("../Controller/tools_regist_manag.php");
 
+echo empty($nameRegNotAP);
+echo $nameRegNotAP[0];
 
-
-
- for($i = 0; $i<sizeof($numRegNotPaid); $i++)
+/* for($i = 0; $i<sizeof($numRegNotPaid); $i++)
 {
     echo $numRegNotPaid[$i]; 
- }
+ }*/
 //$numcourTourn = getNumCourTourn();
 //print_r(regNotPaid($numcourTourn));
 /*$list = array();
