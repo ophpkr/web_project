@@ -16,18 +16,27 @@ function convertToDate($day, $month, $year)
     return $date;
 }
 
-function getNamesTourn()
+function getdStartCourTourn()
 {
-    $listNameTourn = getNameTournamentsByDateDesc();
+    $dStart = getCurrentTourn()[0] -> dStart;
+    
+    return $dStart;
+    
+}
 
-    $listNames = array();
+function getdEndCourTourn()
+{
+    $dEnd =getCurrentTourn()[0] -> dEnd;
     
-    for($i=0; $i< sizeof($listNameTourn); $i++)
-        {
-            array_push($listNames, $listNameTourn[$i]->nameTourn);
-        }
+    return $dEnd;
     
-    return $listNames;
+}
+
+function getNameCourTourn()
+{
+    $NameTourn = getCurrentTourn()[0] -> nameTourn;;
+    
+    return $NameTourn;
     
 }
 
@@ -57,9 +66,38 @@ function compareDates($dFirst, $dSecond) //we want the first one being littler t
     
 }
 
-$namesTourndesc = getNamesTourn();
-$numTourndesc = getNumsTourn();
+function TournsForReg()
+{
+    $a = getTournForReg();
+    $array=array();
+    for($i = 0; $i<sizeof($a); $i++)
+    {
+        $array[$a[$i] -> numTourn] = $a[$i] -> nameTourn;
+    }
+    
+    return $array;
+}
 
+function getNumsTournForReg()
+{
+    $listNumTourn = getTournForReg();
+
+    $listNum = array();
+    
+    for($i=0; $i< sizeof($listNumTourn); $i++)
+        {
+            array_push($listNum, $listNumTourn[$i]->numTourn);
+        }
+    
+    return $listNum;
+    
+}
+
+
+$numTourndesc = getNumsTourn();
+$nameCourTourn = getNameCourTourn();
+$dStartCurrentTourn = getdStartCourTourn();
+$dEndCurrentTourn = getdStartCourTourn(); 
 
 
 ?>

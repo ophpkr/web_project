@@ -40,7 +40,13 @@ $('#addtourn').on('click',function(){
     }
 });
 
-
+$('#updateform').on('click',function(){
+    if($('#updatetourn').css('display') === 'none'){
+        $('#updatetourn').removeClass('hide');
+    }else{
+        $('#updatetourn').addClass('hide');
+    }
+});
 
 
 

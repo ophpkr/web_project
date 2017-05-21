@@ -2,7 +2,9 @@
 
 <?php
 
-
+/*
+ *add a new contestant in the db
+ */
 
 function addContestant($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, $sizeBib)
 {
@@ -15,6 +17,9 @@ function addContestant($name, $firstname, $date, $sexe, $streetName, $pCode, $ci
    return 1;
 }
 
+/*
+ *retourne tous les coureurs et toutes leurs infos
+ */
 function getContestants()
 {
 	$db = db_connection();
@@ -29,7 +34,9 @@ function getContestants()
     return $nameTourn;
 	
 }
-
+/*
+ *check if login and pwdhash given are the one of the admin
+ */
 function isAdmin($login, $pwdhash) //the password given has to be hashed before
 {
 	$db = db_connection();

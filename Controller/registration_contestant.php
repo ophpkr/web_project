@@ -8,9 +8,9 @@
         
         
     //check that every mandatory fields are not empty
-    if(isset($_POST['name']) AND isset($_POST['firstname']) AND isset($_POST['day']) AND isset($_POST['month'])
-       AND isset($_POST['year']) AND isset($_POST['sexe']) AND isset($_POST['street']) AND isset($_POST['pcode'])
-       AND isset($_POST['city']) AND isset($_POST['email']) AND isset($_POST['size']))
+    if(isset($_POST['name']) && isset($_POST['firstname']) && isset($_POST['day']) && isset($_POST['month'])
+       && isset($_POST['year']) && isset($_POST['sexe']) && isset($_POST['street']) && isset($_POST['pcode'])
+       && isset($_POST['city']) && isset($_POST['email']) && isset($_POST['size']))
     {
         
         if(!preg_match('/^[a-zA-Z-\s]+$/', $_POST['name']))

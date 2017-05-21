@@ -37,8 +37,6 @@
         </div>
     </form>
     
-    <?php for($i=0; $i<sizeof($namesTourndesc); $i++)
-        {?>
     <div class="col s12 m9 l7 offset-m4 offset-l4">
     <div class="card horizontal s3 m4 l4">
       <div class="card-image cardheight">
@@ -46,18 +44,30 @@
       </div>
       <div class="card-stacked">
         <div class="card-content">
-          <h2><?php echo $namesTourndesc[$i]; ?></h2>
+          <h2><?php echo $nameCourTourn; ?></h2>
+          <p><?php echo $dStartCurrentTourn; ?></p>
+          <p><?php echo $dEndCurrentTourn; ?></p>
         </div>
-        <div id = "<?php $numTourndesc[$i]; ?>" class="card-action">
-          <a onclick="takeid();" href="#">Gérer</a>
-          <a onclick="takeid();" href="#">Modifier</a>
-          <a onclick="takeid();" href="#">Supprimer</a>
+        <div class="card-action">
+          <a href="registration_management.php">Gérer</a>
+          <a id = "updateform" href="#updatetourn">Modifier</a>      
+          <a href="#">Supprimer</a>
         </div>
-      </div>
+      </div>        
     </div>
-  </div>
     
-  <?php }?>
+  </div>
+    <form class="input-field center-align col s12 m9 l7 offset-m4 offset-l4 hide" id= "updatetourn" method="POST" action = "../Controller/tournament_modification.php">
+          <div class= "col s5 m2 l2 offset-m5 offset-l5 center-align">
+           <input placeholder="date de début" name = "sdate" id= "sdate" type="date" class="datepicker"> 
+          </div>
+          <div class= "col s5 m2 l2 offset-m5 offset-l5 center-align">            
+           <input placeholder="date de fin" name = "edate" id= "edate" type="date" class="datepicker">
+          </div>
+          <div class= "center-align">
+           <button class = "waves-effect waves-light btn" type="submit">Créer</button>
+          </div>
+      </form>  
 </div>
     
     <?php include('footer_management.php')?>

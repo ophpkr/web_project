@@ -7,6 +7,16 @@ require_once("../Modele/user.php");
 require_once('../Modele/registration.php');
 
 
+
+$dStart = getCurrentTourn()[0] -> nameTourn;
+print_r($dStart);
+/*for($i = 0; $i < sizeof($numTournForReg); $i++)
+{
+ echo $numTournForReg[$i];
+ echo $tournsForReg[$numTournForReg[$i]]; 
+}   */        
+    
+
 //setRegistration('essai2', NULL, 0, NULL, 14, 6, 3);
 
 /*$db = db_connection();

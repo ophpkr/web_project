@@ -1,5 +1,5 @@
 <?php include("./header_homepage.php"); ?>
-
+<?php require_once("../Controller/tools.php"); ?>
 
 <h1 class="center-align">S'inscrire à la compétition</h1>
 
