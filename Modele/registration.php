@@ -82,17 +82,17 @@ function regNotPaid($numtourn)
 {
     $db = db_connection();
     
-    $req = $db->prepare('SELECT co.name, co.firstName, reg.numReg
+    $req = $db->prepare('SELECT reg.numReg, co.name, co.firstName
                         FROM contestant AS co, registration AS reg
                         WHERE co.numCont = reg.numCont
 							AND reg.numTourn =:numtourn
 							AND reg.paid = 0
+						ORDER BY co.name ASC
 						');
     
     
     $req->execute(array(':numtourn' => $numtourn));
     $data = $req->fetchall(PDO::FETCH_OBJ);
-    print_r($data);
 
     return $data;
     

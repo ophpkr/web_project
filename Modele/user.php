@@ -49,6 +49,8 @@ function isAdmin($login, $pwdhash) //the password given has to be hashed before
 	return $res;
 }
 
+
+
 /*function getAdminNum()
 {
 	$db = db_connection();

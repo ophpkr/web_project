@@ -1,6 +1,6 @@
-<?php require_once('../Modele/tournament.php');
-
-
+<?php require_once('../Modele/tournament.php');?>
+<?php require_once('../Modele/registration.php');?>
+<?php
 function convertToDate($day, $month, $year)
 {
     if(strlen($day) == 1)
@@ -40,6 +40,13 @@ function getNameCourTourn()
     
 }
 
+function getNumCourTourn()
+{
+    $NumTourn = getCurrentTourn()[0] -> numTourn;;
+    
+    return $NumTourn;
+    
+}
 
 
 function getNumsTourn()
@@ -92,6 +99,51 @@ function getNumsTournForReg()
     return $listNum;
     
 }
+
+function getNumRegNotPaidAsc()
+{
+    $list = array();
+    
+    $numcourTourn = getNumCourTourn();
+    $data =regNotPaid($numcourTourn);
+    for($i=0; $i< sizeof($data); $i++)
+        {
+            array_push($list, $data[$i]->numReg);
+        }
+    return $list;
+}
+
+function getNameRegNotPaidAsc()
+{
+    $list = array();
+   
+    $numcourTourn = getNumCourTourn();
+    $data =regNotPaid($numcourTourn); 
+    
+    for($i=0; $i< sizeof($data); $i++)
+        {
+            array_push($list, $data[$i]->name);
+        }
+    return $list;
+}
+
+function getFirstnameRegNotPaidAsc()
+{
+    $list = array();
+    
+    $numcourTourn = getNumCourTourn();
+    $data =regNotPaid($numcourTourn);
+    for($i=0; $i< sizeof($data); $i++)
+        {
+            array_push($list, $data[$i]->firstName);
+        }
+    return $list;
+}
+
+$numRegNotPaid = getNumRegNotPaidAsc();
+$nameRegNotPaid = getNameRegNotPaidAsc();
+$fNameRegNotPaid = getFirstnameRegNotPaidAsc();
+
 
 
 $numTourndesc = getNumsTourn();

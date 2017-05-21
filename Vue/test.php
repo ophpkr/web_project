@@ -8,8 +8,31 @@ require_once('../Modele/registration.php');
 
 
 
-$dStart = getCurrentTourn()[0] -> nameTourn;
-print_r($dStart);
+
+ for($i = 0; $i<sizeof($numRegNotPaid); $i++)
+{
+    echo $numRegNotPaid[$i]; 
+ }
+//$numcourTourn = getNumCourTourn();
+//print_r(regNotPaid($numcourTourn));
+/*$list = array();
+ for($i=0; $i< sizeof($contofregnotpaid); $i++)
+        {
+            array_push($list, $contofregnotpaid[$i]->numReg);
+
+            print_r($contofregnotpaid[$i]->numReg);
+        }
+    print_r($list[);*/
+/*for($i = 0; $i<sizeof($contofregnotpaid); $i++)
+    {
+        
+        //echo sizeof($contofregnotpaid[$i]);
+        print_r($contofregnotpaid[0]);
+    }
+    echo sizeof($contofregnotpaid);*/
+        
+/*$dStart = getCurrentTourn()[0] -> nameTourn;
+print_r($dStart);*/
 /*for($i = 0; $i < sizeof($numTournForReg); $i++)
 {
  echo $numTournForReg[$i];
