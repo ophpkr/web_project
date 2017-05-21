@@ -7,8 +7,8 @@ require_once("../Modele/user.php");
 require_once('../Modele/registration.php');
 require_once("../Controller/tools_regist_manag.php");
 
-echo empty($nameRegNotAP);
-echo $nameRegNotAP[0];
+$a = getRegistrationOk(6);
+print_r($a);
 
 /* for($i = 0; $i<sizeof($numRegNotPaid); $i++)
 {

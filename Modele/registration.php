@@ -232,7 +232,40 @@ function setAutPar($numreg)
     
 }
 
+/*
+ *returns registrations ended
+ */
 
+function getRegistrationOk($numtourn)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT co.name, co.firstName, reg.numReg
+							FROM contestant AS co, registration AS reg, tournament AS tou
+							WHERE co.numCont = reg.numCont
+								AND tou.numTourn = reg.numTourn
+								AND reg.numTourn =:numtourn
+								AND reg.parentAut = 1
+								AND reg.paid = 1
+							
+							UNION (
+								SELECT co2.name, co2.firstName, reg2.numReg
+								FROM contestant AS co2, registration AS reg2, tournament AS tou2
+								WHERE co2.numCont = reg2.numCont
+									AND tou2.numTourn = reg2.numTourn
+									AND reg2.numTourn =:numtourn
+									AND reg2.parentAut = NULL
+									AND reg2.paid = 1
+							)					
+						');
+    
+    
+    $req->execute(array(':numtourn' => $numtourn));
+    $data = $req->fetchall(PDO::FETCH_OBJ);
+
+    return $data;
+	
+}
 
 
 

@@ -1,4 +1,5 @@
 <?php require_once('../Modele/registration.php'); ?>
+<?php require_once('../Modele/tournament.php'); ?>
 
 <?php
 
@@ -114,8 +115,49 @@ $fNameRegNotAP = getFirstnameRegNotAP();
 /* ------------------Concerning contestants who ended their registration------------------*/
 
 
+function getFirstnameRegOk()
+{
+    $list = array();
+    
+    $numcourTourn = getNumCourTourn();
+    $data =getRegistrationOk($numcourTourn);
+    for($i=0; $i< sizeof($data); $i++)
+        {
+            array_push($list, $data[$i]->firstName);
+        }
+    return $list;
+}
 
 
+function getNameRegOk()
+{
+    $list = array();
+    
+    $numcourTourn = getNumCourTourn();
+    $data =getRegistrationOk($numcourTourn);
+    for($i=0; $i< sizeof($data); $i++)
+        {
+            array_push($list, $data[$i]->name);
+        }
+    return $list;
+}
+
+function getNumRegOk()
+{
+    $list = array();
+    
+    $numcourTourn = getNumCourTourn();
+    $data =getRegistrationOk($numcourTourn);
+    for($i=0; $i< sizeof($data); $i++)
+        {
+            array_push($list, $data[$i]->numReg);
+        }
+    return $list;
+}
+
+$numRegOk = getNumRegOk();
+$nameRegOk = getNameRegOk();
+$fNameRegOk = getFirstnameRegOk();
 
 
 
