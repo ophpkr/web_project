@@ -4,9 +4,21 @@ require_once("../Modele/tournament.php");
 require_once("../Modele/round.php");
 require_once("../Controller/tools.php");
 require_once("../Modele/user.php");
+require_once('../Modele/registration.php');
 
 
+//setRegistration('essai2', NULL, 0, NULL, 14, 6, 3);
 
+/*$db = db_connection();
+    
+    $req = $db->prepare('INSERT INTO category(nameCat, miniAge, maxiAge)
+                        VALUES(:namecat, :miniage, :maxiage)');
+    
+    $req->execute(array(':namecat'=>'Minime', ':miniage'=>12, ':maxiage'=>14));
+	echo 'ok';*/
+
+
+//getTourn(7);
 //$a = getTournament();
 
 /*$listNameTourn = getNameTournaments();

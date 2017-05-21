@@ -58,4 +58,21 @@ function update_tournament($numTourninit, $newname, $newstartDate, $newendDate)
     return 1;
 }
 
+function getTourn($numTourn)
+{
+    $db = db_connection();
+    
+    $req = $db->prepare('SELECT *
+                        FROM tournament
+                        WHERE numTourn =:numTourn');
+    
+    $req -> bindParam(':numTourn', $numTourn);
+    $req->execute();
+    $dataTourn= $req->fetchall(PDO::FETCH_OBJ);
+
+    return $dataTourn;
+    
+    
+}
+
 ?>

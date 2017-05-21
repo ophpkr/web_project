@@ -31,6 +31,8 @@ function getNamesTourn()
     
 }
 
+
+
 function getNumsTourn()
 {
     $listNumTourn = getNumTournamentsByDateDesc();

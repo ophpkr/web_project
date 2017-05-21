@@ -40,7 +40,7 @@
     <?php for($i=0; $i<sizeof($namesTourndesc); $i++)
         {?>
     <div class="col s12 m9 l7 offset-m4 offset-l4">
-    <div class="card horizontal l2">
+    <div class="card horizontal s3 m4 l4">
       <div class="card-image cardheight">
         <img src="http://lorempixel.com/100/190/nature/6">
       </div>
@@ -48,10 +48,10 @@
         <div class="card-content">
           <h2><?php echo $namesTourndesc[$i]; ?></h2>
         </div>
-        <div class="card-action">
-          <a href="#">Gérer</a>
-          <a href="#">Modifier</a>
-          <a href="#">Supprimer</a>
+        <div id = "<?php $numTourndesc[$i]; ?>" class="card-action">
+          <a onclick="takeid();" href="#">Gérer</a>
+          <a onclick="takeid();" href="#">Modifier</a>
+          <a onclick="takeid();" href="#">Supprimer</a>
         </div>
       </div>
     </div>

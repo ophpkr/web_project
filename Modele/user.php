@@ -4,12 +4,12 @@
 
 
 
-function addContestant($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, $sizeBib, $numPermit)
+function addContestant($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, $sizeBib)
 {
    $db = db_connection();    //creation of an array containing data about the contestant
-   $data = array($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, $sizeBib, $numPermit, 0, NULL, NULL);
-    $req = $db->prepare('INSERT INTO contestant(name, firstName, dBirth, sexe, streetName, pCode, city, email, telNum, sizeBib, numPermit, isAdmin, login, pwd)
-                       VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+   $data = array($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, $sizeBib, 0, NULL, NULL);
+    $req = $db->prepare('INSERT INTO contestant(name, firstName, dBirth, sexe, streetName, pCode, city, email, telNum, sizeBib,isAdmin, login, pwd)
+                       VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)');
    
  	$req->execute($data);      
    return 1;
@@ -21,7 +21,7 @@ function getContestants()
     
     $req = $db->prepare('SELECT *
                         FROM contestant
-                        WHERE isAdmin == 0');
+                        WHERE isAdmin = 0');
     
     $req->execute();
     $nameTourn = $req->fetchall(PDO::FETCH_OBJ);
