@@ -1,16 +1,6 @@
 <?php require_once('../Modele/registration.php'); ?>
-<?php require_once('../Modele/tournament.php'); ?>
-
+<?php require_once('num_current_tourn.php'); ?>
 <?php
-
-/* ----------------Num of current tournament----------------------*/
-function getNumCourTourn()
-{
-    $NumTourn = getCurrentTourn()[0] -> numTourn;
-    
-    return $NumTourn;
-    
-}
 
 
 /* ------------------Concerning unpaid registrations------------------*/

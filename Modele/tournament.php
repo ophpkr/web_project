@@ -50,7 +50,11 @@ function addTournament($name, $startDate, $endDate)
     $req = $db->prepare('INSERT INTO tournament(nameTourn, dStart, dEnd)
                         VALUES(:nameT, :dStart, :dEnd)');
     
-    $req->execute(array(':nameT'=>$name, ':dStart'=>$startDate, ':dEnd'=>$endDate));
+    $req->execute(array(
+                    ':nameT'=>$name,
+                    ':dStart'=>$startDate,
+                    ':dEnd'=>$endDate
+                    ));
     
     return 1;
 }
@@ -59,15 +63,19 @@ function addTournament($name, $startDate, $endDate)
 /*
  *update tournament with new infos
  */
-function updateTournament($numTourninit, $newstartDate, $newendDate)
+function updateTourn($newstartDate, $newendDate, $numcourtourn)
 {
     $db = db_connection();
     
-    $req = $db->prepare('UPDATE tournament(dStart, dEnd)
-                        VALUES(:dStart, :dEnd)
-                        WHERE numTourn=:numTourn');
+    $req = $db->prepare('UPDATE tournament
+                        SET dStart = :dStart, dEnd =:dEnd
+                        WHERE numTourn =:numcourtourn');
     
-    $req->execute(array(':dStartTourn'=>$newstartDate, ':dEnd'=>$newendDate, ':numTourn'=> $numTourninit));
+    $req->execute(array(
+                    ':dStart' => $newstartDate,
+                    ':dEnd' => $newendDate,
+                    ':numcourtourn' => $numcourtourn
+                    ));
     
     return 1;
 }

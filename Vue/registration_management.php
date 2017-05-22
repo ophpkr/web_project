@@ -33,7 +33,7 @@
                     <td><?php echo $fNameRegNotPaid[$i]; ?></td>
                     <td><?php echo $numRegNotPaid[$i]; ?></td>
                     <td>
-                        <form method="POST" action = "../Controller/tournament_paid.php" >
+                        <form method="GET" action = "../Controller/tournament_paid.php" >
                         <input type= "hidden" name= "numreg" value = "<?php echo $numRegNotPaid[$i] ; ?>"></input>
                         <button class = "waves-effect waves-light btn" type="submit">a payé</button>
                     </form>
@@ -94,9 +94,9 @@
                     <td><?php echo $fNameRegNotAP[$i]; ?></td>
                     <td><?php echo $numRegNotAP[$i]; ?></td>
                     <td>
-                        <form method="POST" action = "../Controller/tournament_AP.php" >
+                        <form method="GET" action = "../Controller/tournament_AP_ok.php" >
                         <input type= "hidden" name= "numreg" value = "<?php echo $numRegNotAP[$i] ; ?>"></input>
-                        <button class = "waves-effect waves-light btn" type="submit">a payé</button>
+                        <button class = "waves-effect waves-light btn" type="submit">autorisation ok</button>
                     </form>
                     </td>
                     </tr>

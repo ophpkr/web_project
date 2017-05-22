@@ -103,20 +103,18 @@ function regNotPaid($numtourn)
 /*
  *update bib of a contestant for a tournament
  */
-function setBib($numtourn, $bib, $numcont)
+function setBib($bib, $numreg)
 {
     $db = db_connection();
 	$req = $db -> prepare('UPDATE registration
                           SET bib=:bib
-                          WHERE numCont =:numcont
-							AND numTourn =:numtourn
+                          WHERE numReg =:numreg
 						');
     try{
         
         $req->execute(array(
-                    ':numtourn' => $numtourn,
-                    ':bib' => $bib,
-                    ':numcont' => $numcont
+                    ':numreg' => $numreg,
+                    ':bib' => $bib
                     ));
     }
     catch(PDOException $e)
@@ -129,6 +127,21 @@ function setBib($numtourn, $bib, $numcont)
 
     return 1;
     
+}
+
+function getMaxBib($numcourtourn)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT MAX(bib) AS bibmax
+                        FROM registration
+                        WHERE numTourn =:numtourn');
+    
+    
+    $req->execute(array(':numtourn' => $numcourtourn));
+    $data = $req->fetchall(PDO::FETCH_OBJ);
+
+    return $data;
 }
 
 
@@ -144,7 +157,6 @@ function setPaid($numreg)
     try{
         
         $req->execute(array(':numreg' => $numreg));
-        echo '3';
     }
     catch(PDOException $e)
     {      

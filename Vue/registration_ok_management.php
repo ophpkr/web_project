@@ -4,7 +4,7 @@
 
 <div class= "row">
     <div>
-        <h1 class= "col s12 m9 l7 offset-m5 offset-l5">LES INSCRIS</h1>
+        <h1 class= "col s12 m9 l7 offset-m5 offset-l5">LES INSCRITS</h1>
     </div>
     <div>
         <h2 class= "col s12 m9 l7 offset-m3 offset-l3">Liste de tous les inscrits</h2>

@@ -18,7 +18,7 @@
                     <ul >
                       <li class= "brown lighten-1"><a href="registration_ok_management">Liste des inscrits</a></li>
                       <li class= "brown lighten-1"><a href="registration_management.php">Gérer les inscriptions</a></li>
-                      <li class= "brown lighten-1"><a href="#">Gérer les manches</a></li>
+                      <li class= "brown lighten-1"><a href="course_management.php">Gérer les manches</a></li>
                       <li class= "brown lighten-1"><a href="#">Résultats</a></li>
                     </ul>
                   </div>

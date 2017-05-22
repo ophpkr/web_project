@@ -3,7 +3,7 @@
     <?php require_once('../Controller/tools.php'); ?>
    
    <div class= "row"> 
-    <h1 class= "col s12 m9 l7 offset-m4 offset-l4">GESTION DE MES COMPÉTITIONS</h1>
+    <h1 class= "col s12 m9 l7 offset-m4 offset-l4">GESTION DES COMPÉTITIONS</h1>
     </div>
    
 <div class= "row">
@@ -59,13 +59,13 @@
   </div>
     <form class="input-field center-align col s12 m9 l7 offset-m4 offset-l4 hide" id= "updatetourn" method="POST" action = "../Controller/tournament_modification.php">
           <div class= "col s5 m2 l2 offset-m5 offset-l5 center-align">
-           <input placeholder="date de début" name = "sdate" id= "sdate" type="date" class="datepicker"> 
+           <input placeholder="date de début" name = "newsdate" type="date" class="datepicker"> 
           </div>
           <div class= "col s5 m2 l2 offset-m5 offset-l5 center-align">            
-           <input placeholder="date de fin" name = "edate" id= "edate" type="date" class="datepicker">
+           <input placeholder="date de fin" name = "newedate" type="date" class="datepicker">
           </div>
           <div class= "center-align">
-           <button class = "waves-effect waves-light btn" type="submit">Créer</button>
+           <button class = "waves-effect waves-light btn" type="submit">Modifier</button>
           </div>
       </form>  
 </div>

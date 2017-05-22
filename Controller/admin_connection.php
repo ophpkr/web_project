@@ -14,8 +14,8 @@ if(isset($_POST["login"]) && $_POST["pwd"])
         $a = sha1($a);
         
         setcookie("type", $a, time() + (86400  * 365),'/');
-       header("Location: ../Vue/tournament_management.php");
-       exit();
+        header("Location: ../Vue/tournament_management.php");
+        exit();
        
     }
     else

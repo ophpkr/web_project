@@ -1,14 +1,27 @@
 <?php
 require_once("../Modele/db_connect.php");
 require_once("../Modele/tournament.php");
-require_once("../Modele/round.php");
+require_once("../Modele/course.php");
 require_once("../Controller/tools.php");
 require_once("../Modele/user.php");
 require_once('../Modele/registration.php');
 require_once("../Controller/tools_regist_manag.php");
 
-$a = getRegistrationOk(6);
-print_r($a);
+    $db = db_connection();
+    
+    $req = $db->prepare('SELECT MAX(bib) AS bibmax
+                        FROM registration
+                        WHERE numTourn = 6');
+    
+    
+    $req->execute();
+    $data = $req->fetchall(PDO::FETCH_OBJ);
+
+    echo 'data : ';
+    print_r($data[0] -> bibmax);
+    //echo ($data[0] -> bibmax == NULL);
+    echo '   de taille  ' . sizeof($data);
+    
 
 /* for($i = 0; $i<sizeof($numRegNotPaid); $i++)
 {
