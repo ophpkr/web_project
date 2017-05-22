@@ -32,27 +32,7 @@ function setRegistration($numpermit, $paraut, $paid, $bib, $numcont, $numtourn, 
     return 1;
 }
 
-/*
- *returns name, fname, numreg, num bib and size of bib of contestants of a tournament
- */
-function getRegBibAndSize($numtourn)
-{
-    $db = db_connection();
-    
-    $req = $db->prepare('SELECT co.name, co.firstName, reg.numReg, reg.bib, co.sizeBib
-                        FROM contestant AS co, registration AS reg
-                        WHERE co.numCont = reg.numCont
-							AND reg.numTourn =:numtourn');
-    
-    
 
-
-    $req->execute(array(':numtourn' => $numtourn));
-    $data = $req->fetchall(PDO::FETCH_OBJ);
-
-    return $data;
-    
-}
 
 /*
  *return numReg, name, firstName of contestants having paid the registration
@@ -279,6 +259,17 @@ function getRegistrationOk($numtourn)
 	
 }
 
-
+function bibExists($bib)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT numReg
+                        FROM registration
+                        WHERE bib =:bib');
+	    
+	$req->execute(array(':bib' => $bib));
+	$res = $req->rowCount();
+	return $res;
+}
 
 ?>

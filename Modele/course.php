@@ -33,4 +33,31 @@ function addCourse($namecourse, $coeff, $numtourncour)
     return 1;
 }
 
+
+function getCourse($numtourncour)
+{
+    $db = db_connection();
+    $req = $db->prepare('SELECT numCourse, nameCourse, coeff
+                        FROM course
+                        WHERE numTourn =:numtourn
+						ORDER BY numCourse ASC');
+	    
+	$req->execute(array(':numtourn' => $numtourncour));
+    $res = $req->fetchall(PDO::FETCH_OBJ);
+	return $res;
+}
+
+function getCoeff($numcourse)
+{
+    $db = db_connection();
+    $req = $db->prepare('SELECT coeff
+                        FROM course
+                        WHERE numCourse =:numcourse');
+	    
+	$req->execute(array(':numcourse' => $numcourse));
+    $res = $req->fetchall(PDO::FETCH_OBJ);
+	return $res;
+}
+
+
 ?>

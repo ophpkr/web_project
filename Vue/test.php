@@ -9,19 +9,18 @@ require_once("../Controller/tools_regist_manag.php");
 
     $db = db_connection();
     
-    $req = $db->prepare('SELECT MAX(bib) AS bibmax
-                        FROM registration
-                        WHERE numTourn = 6');
+    $req = $db->prepare('SELECT MAX(score) AS scoremax
+                        FROM make
+                        WHERE numCourse =1');
     
     
     $req->execute();
     $data = $req->fetchall(PDO::FETCH_OBJ);
 
-    echo 'data : ';
-    print_r($data[0] -> bibmax);
-    //echo ($data[0] -> bibmax == NULL);
-    echo '   de taille  ' . sizeof($data);
+    print_r($data);
     
+	print_r($data[0]);
+	print_r($data[0] -> scoremax);
 
 /* for($i = 0; $i<sizeof($numRegNotPaid); $i++)
 {
