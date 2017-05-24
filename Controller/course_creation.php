@@ -22,7 +22,7 @@ if(isset($_POST['namecourse']) AND isset($_POST['coeff']))
     
     $numtourncour = getNumCourTourn();
     
-    if(existNameCourse($_POST['namecourse'], $numtourncour))
+    if(existNameCourse(ucwords(strtolower(noAccent($_POST['namecourse']))), $numtourncour))
     {
         $msg = "Ce nom de manche est déjà utilisé pour la compétition";
         header("Location: ../Vue/course_management.php?msg=" .$msg);
@@ -30,7 +30,7 @@ if(isset($_POST['namecourse']) AND isset($_POST['coeff']))
     }
     else
     {
-        addCourse($_POST['namecourse'], $_POST['coeff'], $numtourncour);
+        addCourse(ucwords(strtolower(noAccent($_POST['namecourse']))), $_POST['coeff'], $numtourncour);
         header("Location: ../Vue/course_management.php?msg=" .$msg);
         exit();
     }

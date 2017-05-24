@@ -147,9 +147,9 @@ if(!empty(getCurrentTourn()[0]))
                 echo 'mail existant';
                 $street = getStreet($_POST['email']);
                 
-                if(strtolower($_POST['street']) != $street)
+                if(strtolower(noAccent($_POST['street'])) != $street)
                 {
-                    updateContInfos($_POST['email'], $_POST['street'], $_POST['pcode'], $_POST['city'], $phone);
+                    updateContInfos($_POST['email'], strtolower(noAccent($_POST['street'])), $_POST['pcode'], ucwords(strtolower(noAccent($_POST['city']))), $phone);
                 }
                 
                 $num = getNumCont($_POST['email']);
@@ -158,8 +158,8 @@ if(!empty(getCurrentTourn()[0]))
             }
             else
             {
-                addContestant(ucwords(strtolower($_POST['name'])), ucwords(strtolower($_POST['firstname'])), $bDate,
-                        $_POST['sexe'], strtolower($_POST['street']), $_POST['pcode'], ucwords(strtolower($_POST['city'])),
+                addContestant(ucwords(strtolower(noAccent($_POST['name']))), ucwords(strtolower(noAccent($_POST['firstname']))), $bDate,
+                        $_POST['sexe'], strtolower(noAccent($_POST['street'])), $_POST['pcode'], ucwords(strtolower(noAccent($_POST['city']))),
                         $_POST['email'], $phone, $numPermit);
                 
                 $num = getNumCont($_POST['email']);
@@ -210,6 +210,7 @@ if(!empty(getCurrentTourn()[0]))
         }
         else
         {
+            header("Location : ../Vue/homepage.php");
             $msg = "Vous 'avez pas rempli tous les champs obligatoires";
         }
         
