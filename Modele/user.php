@@ -2,41 +2,46 @@
 
 <?php
 
-/*
- *add a new contestant in the db
- */
 
-function addContestant($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, $sizeBib)
+
+function addContestant($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone)
 {
    $db = db_connection();    //creation of an array containing data about the contestant
-   $data = array($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, $sizeBib, 0, NULL, NULL);
-    $req = $db->prepare('INSERT INTO contestant(name, firstName, dBirth, sexe, streetName, pCode, city, email, telNum, sizeBib,isAdmin, login, pwd)
-                       VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)');
+   $data = array($name, $firstname, $date, $sexe, $streetName, $pCode, $city, $email, $phone, 0, NULL, NULL);
+    $req = $db->prepare('INSERT INTO contestant(name, firstName, dBirth, sexe, streetName, pCode, city, email, telNum, isAdmin, login, pwd)
+                       VALUES(?,?,?,?,?,?,?,?,?,?,?,?)');
    
  	$req->execute($data);      
    return 1;
 }
 
-/*
- *retourne tous les coureurs et toutes leurs infos
- */
-function getContestants()
+function mailExists($mail)
+{
+	$db = db_connection();
+   $req = $db->prepare('SELECT numCont
+                        FROM contestant
+                        WHERE email = :email');
+	
+	$req->execute(array(':email' => $mail));
+	$res = $req->rowCount();
+	return $res;
+}
+
+function getInfos($numcont)
 {
 	$db = db_connection();
     
-    $req = $db->prepare('SELECT *
+    $req = $db->prepare('SELECT co.name, co.firstName, co.dBirth, co.sexe, co.streetName, co.pCode, co.city, co.email, co.telNum
                         FROM contestant
-                        WHERE isAdmin = 0');
+                        WHERE co.numCont = :numcont
+								');
     
-    $req->execute();
-    $nameTourn = $req->fetchall(PDO::FETCH_OBJ);
+    $req->execute(array(':numcont' => $numcont));
+    $contestantsok = $req->fetchall(PDO::FETCH_OBJ);
 
-    return $nameTourn;
+    return $contestantsok;
 	
 }
-/*
- *check if login and pwdhash given are the one of the admin
- */
 function isAdmin($login, $pwdhash) //the password given has to be hashed before
 {
 	$db = db_connection();
@@ -50,18 +55,65 @@ function isAdmin($login, $pwdhash) //the password given has to be hashed before
 }
 
 
+function deleteContestant($numcont)
+{
+    $db = db_connection();
+    
+    $req = $db->prepare('DELETE FROM contestant
+                        WHERE numcont =:numcont');
+    
+    $req->execute(array(':numcont' => $numcont));
+    
+    return 1;
+}
 
-/*function getAdminNum()
+function getNumCont($email)
+{
+	$db = db_connection();
+   $req = $db->prepare('SELECT numCont
+                        FROM contestant
+                        WHERE email = :email');
+	
+	$req->execute(array(':email' => $email));
+	$numcont = $req -> fetchall(PDO::FETCH_OBJ);
+	$numcont = $numcont[0] -> numCont;
+	
+	return $numcont;
+}
+
+function getStreet($email)
+{
+	$db = db_connection();
+   $req = $db->prepare('SELECT streetName
+                        FROM contestant
+                        WHERE email = :email');
+	
+	$req->execute(array(':email' => $email));
+	$numcont = $req -> fetchall(PDO::FETCH_OBJ);
+	$numcont = $numcont[0] -> streetName;
+	
+	return $numcont;
+}
+
+function updateContInfos($email, $street, $pcode, $city, $numtel)
 {
 	$db = db_connection();
     
-    $req = $db->prepare('SELECT numCont
-                        FROM contestant
-                        WHERE isAdmin =:ad');
-
-	$req -> bindParam(':ad', 1);
-	$req -> execute();
-	echo $req;
-}*/
+    $req = $db->prepare('UPDATE contestant
+                        SET streetName = :street, pCode = :pcode, city = :city, telNum = :numtel
+                        WHERE email =:email');
+    
+    $req->execute(array(
+						  'email' => $email,
+                    ':street' => $street,
+                    ':pcode' => $pcode,
+                    ':city' => $city,
+						  ':numtel' => $numtel
+                    ));
+    
+    return 1;
+	
+	
+}
 
 ?>

@@ -5,20 +5,18 @@
 /*
  *creation of a new registration in db
  */
-function setRegistration($numpermit, $paraut, $paid, $bib, $numcont, $numtourn, $numcat)
+function setRegistration($numpermit, $paraut, $numcont, $numtourn, $numcat)
 {
-    print_r(array($numpermit, $paraut, $paid, $bib, $numcont, $numtourn, $numcat));
+    print_r(array($numpermit, $paraut, $numcont, $numtourn, $numcat));
     $db = db_connection();
 
-    $req = $db -> prepare('INSERT INTO registration(numPermit, parentAut, paid, bib, numCont, numTourn, numCat)
-                        VALUES(:numpermit, :paraut, :paid, :bib, :numcont, :numtourn, :numcat)');
+    $req = $db -> prepare('INSERT INTO registration(numPermit, parentAut, paid, numCont, numTourn, numCat)
+                        VALUES(:numpermit, :paraut, 0, :numcont, :numtourn, :numcat)');
 
     try{
         $req->execute(array(
                     ':numpermit' => $numpermit,
                     ':paraut' => $paraut,
-                    ':paid' => $paid,
-                    ':bib' => $bib,
                     ':numcont' => $numcont,
                     ':numtourn' => $numtourn,
                     ':numcat' => $numcat));
@@ -232,30 +230,18 @@ function getRegistrationOk($numtourn)
 {
 	$db = db_connection();
     
-    $req = $db->prepare('SELECT co.name, co.firstName, reg.numReg
-							FROM contestant AS co, registration AS reg, tournament AS tou
-							WHERE co.numCont = reg.numCont
-								AND tou.numTourn = reg.numTourn
-								AND reg.numTourn =:numtourn
-								AND reg.parentAut = 1
-								AND reg.paid = 1
-							
-							UNION (
-								SELECT co2.name, co2.firstName, reg2.numReg
-								FROM contestant AS co2, registration AS reg2, tournament AS tou2
-								WHERE co2.numCont = reg2.numCont
-									AND tou2.numTourn = reg2.numTourn
-									AND reg2.numTourn =:numtourn
-									AND reg2.parentAut = NULL
-									AND reg2.paid = 1
-							)					
+    $req = $db->prepare('SELECT co.numCont, co.name, co.firstName, reg.numReg
+                        FROM contestant AS co, registration AS reg
+                        WHERE co.numCont = reg.numCont
+							AND reg.numTourn = :numtourn
+							AND reg.paid = 1
+							AND (reg.parentAut != 0 OR reg.parentaut IS NULL)
 						');
     
-    
     $req->execute(array(':numtourn' => $numtourn));
-    $data = $req->fetchall(PDO::FETCH_OBJ);
+    $contestantsok = $req->fetchall(PDO::FETCH_OBJ);
 
-    return $data;
+    return $contestantsok;
 	
 }
 

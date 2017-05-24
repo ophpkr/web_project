@@ -59,5 +59,17 @@ function getCoeff($numcourse)
 	return $res;
 }
 
+function deleteCourse($numcourse)
+{
+    $db = db_connection();
+    
+    $req = $db->prepare('DELETE FROM course
+                        WHERE numcourse =:numcourse');
+    
+    $req->execute(array(':numcourse' => $numcourse));
+    
+    return 1;
+}
+
 
 ?>

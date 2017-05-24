@@ -24,7 +24,7 @@
         
                 <tbody>
                   
-                    <?php for($i = 0; $i<sizeof($numRegNotPaid); $i++)
+                    <?php for($i = 0; $i<sizeof($fNameRegOk); $i++)
                     {?>
                     <tr>
                     <td><?php echo $nameRegOk[$i]; ?></td>
@@ -32,8 +32,8 @@
                     <td><?php echo $numRegOk[$i]; ?></td>
                     <td>
                         <form method="POST" action = "../Controller/tournament_paid.php" >
-                        <input type= "hidden" name= "numreg" value = "<?php echo $numRegNotPaid[$i] ; ?>"></input>
-                        <button class = "waves-effect waves-light btn" type="submit">a payé</button>
+                        <input type= "hidden" name= "numreg" value = "<?php echo $numContRegOk[$i] ; ?>"></input>
+                        <button class = "waves-effect waves-light btn" type="submit">Voir</button>
                     </form>
                     </td>
                     </tr>

@@ -2,9 +2,7 @@
 
 <?php
 
-/*
- *give all tournaments by date desc
- */
+
 function getTournamentsByDateDesc()
 {
     $db = db_connection();
@@ -21,9 +19,7 @@ function getTournamentsByDateDesc()
     
 }
 
-/*
- *give all num tournaments by date desc
- */
+
 function getNumTournamentsByDateDesc()
 {
     $db = db_connection();
@@ -40,15 +36,13 @@ function getNumTournamentsByDateDesc()
     
 }
 
-/*
- *creates a tournament
- */
+
 function addTournament($name, $startDate, $endDate)
 {
     $db = db_connection();
     
-    $req = $db->prepare('INSERT INTO tournament(nameTourn, dStart, dEnd)
-                        VALUES(:nameT, :dStart, :dEnd)');
+    $req = $db->prepare('INSERT INTO tournament(nameTourn, dStart, dEnd, regClosed)
+                        VALUES(:nameT, :dStart, :dEnd, 0)');
     
     $req->execute(array(
                     ':nameT'=>$name,
@@ -60,9 +54,7 @@ function addTournament($name, $startDate, $endDate)
 }
 
 
-/*
- *update tournament with new infos
- */
+
 function updateTourn($newstartDate, $newendDate, $numcourtourn)
 {
     $db = db_connection();
@@ -80,14 +72,12 @@ function updateTourn($newstartDate, $newendDate, $numcourtourn)
     return 1;
 }
 
-/*
- *returns all infos about tournaments
- */
+
 function getTourn($numTourn)
 {
     $db = db_connection();
     
-    $req = $db->prepare('SELECT *
+    $req = $db->prepare('SELECT 
                         FROM tournament
                         WHERE numTourn =:numTourn');
     
@@ -100,9 +90,7 @@ function getTourn($numTourn)
     
 }
 
-/*
- *Tournament in which contestants register
- */
+
 
 
 function getCurrentTourn()
@@ -130,6 +118,17 @@ function getCurrentTourn()
 }
 
 
+function deleteTourn($numtourn)
+{
+    $db = db_connection();
+    
+    $req = $db->prepare('DELETE FROM tournament
+                        WHERE numTourn =:numtourn');
+    
+    $req->execute(array(':numtourn' => $numtourn));
+    
+    return 1;
+}
 
 
 

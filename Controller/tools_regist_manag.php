@@ -145,9 +145,23 @@ function getNumRegOk()
     return $list;
 }
 
+function getNumContRegOk()
+{
+    $list = array();
+    
+    $numcourTourn = getNumCourTourn();
+    $data =getRegistrationOk($numcourTourn);
+    for($i=0; $i< sizeof($data); $i++)
+        {
+            array_push($list, $data[$i]->numCont);
+        }
+    return $list;
+}
+
 $numRegOk = getNumRegOk();
 $nameRegOk = getNameRegOk();
 $fNameRegOk = getFirstnameRegOk();
+$numContRegOk = getNumContRegOk();
 
 
 

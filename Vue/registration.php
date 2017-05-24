@@ -12,7 +12,7 @@
                   <input placeholder="Prenom" type="text" class="validate" name="firstname" required>
                 </div>
                 <div class="input-field col s12 center-align">
-                  <input placeholder="Nom" type="text" class="validate" name="name" required>
+                  <input placeholder="Nom" type="text" class="validate" name="name">
                 </div>
                 <div class="center-align">
                   <input name="sexe" type="radio" value = "H" id="test1"/>
@@ -61,17 +61,6 @@
                 </div>
                 <div class="input-field col s12 center-align" name="phone">
                   <input placeholder="tel" type="text" class="validate">
-                </div>
-                <div class="input-field col s12 center-align">
-                  <select type = "text" name = "size" >
-                    <option value="" disabled selected>taille</option>
-                    <option value="XS">XS</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                  </select>
                 </div>
                 <div class= "col s12 center-align">
                   <input class="with-gap" name="havepermit" type="checkbox" id="havepermit">

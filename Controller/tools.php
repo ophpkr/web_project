@@ -26,7 +26,7 @@ function getdStartCourTourn()
 
 function getdEndCourTourn()
 {
-    $dEnd =getCurrentTourn()[0] -> dEnd;
+    $dEnd = getCurrentTourn()[0] -> dEnd;
     
     return $dEnd;
     
@@ -73,6 +73,15 @@ function compareDates($dFirst, $dSecond) //we want the first one being littler t
     
 }
 
+function compareDatesStrict($dFirst, $dSecond) //we want the first one being littler than the second one
+{
+    $datetime1 = new DateTime($dFirst);
+    $datetime2 = new DateTime($dSecond);
+
+    return($datetime1 < $datetime2);
+    
+}
+
 function TournsForReg()
 {
     $a = getTournForReg();
@@ -111,7 +120,7 @@ function getNumsTournForReg()
 $numTourndesc = getNumsTourn();
 $nameCourTourn = getNameCourTourn();
 $dStartCurrentTourn = getdStartCourTourn();
-$dEndCurrentTourn = getdStartCourTourn(); 
+$dEndCurrentTourn = getdEndCourTourn(); 
 
 
 ?>
