@@ -130,6 +130,15 @@ function deleteTourn($numtourn)
     return 1;
 }
 
-
-
+function existsCurrentTourn()
+{
+$db = db_connection();
+    $req = $db->prepare('SELECT numTourn
+                        FROM tournament
+                        WHERE DATEDIFF( CURRENT_DATE, dStart) <0 AND regClosed = 0');
+	    
+	$req->execute();
+	$res = $req->rowCount();
+	return $res;
+}
 ?>

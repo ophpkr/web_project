@@ -1,0 +1,49 @@
+RewriteEngine On
+Options -MultiViews
+
+RewriteRule ^cont_add_result/$ Controller/cont_add_result.php [L]
+RewriteRule ^cont_admin_connection/$ Controleur/cont_admin_connection.php [L]
+RewriteRule ^cont_course_creation/$ Controller/cont_course_creation.php [L]
+RewriteRule ^cont_deconnect/$ Controller/cont_deconnect.php [L]
+RewriteRule ^cont_delete_course/([0-9]+)/$ Controller/cont_delete_course.php?numcourse=$1 [L]
+RewriteRule ^cont_delete_registration/([0-9]+)/$ Controller/cont_delete_registration.php?numreg=$1 [L]
+RewriteRule ^cont_delete_tourn/([0-9]+)/$ Controller/cont_delete_tourn.php?numtourn=$1 [L]
+RewriteRule ^cont_num_current_tourn/$ Controller/cont_num_current_tourn.php [L]
+RewriteRule ^cont_registration_contestant/$ Controller/cont_registration_contestant.php [L]
+RewriteRule ^cont_tools/$ Controller/cont_tools.php [L]
+RewriteRule ^cont_tools_category/$ Controller/cont_tools_category.php [L]
+RewriteRule ^cont_tools_course_management/$ Controller/cont_tools_course_management.php [L]
+RewriteRule ^cont_tools_regist_manag/$ Controller/cont_tools_regist_manag.php [L]
+RewriteRule ^cont_tools_tournament_management/$ Controller/cont_tools_tournament_management.php [L]
+RewriteRule ^cont_tournament_AP_ok/$ Controller/cont_tournament_AP_ok.php [L]
+RewriteRule ^cont_tournament_creation/$ Controller/cont_tournament_creation.php [L]
+RewriteRule ^cont_tournament_modification/$ Controller/cont_tournament_modification.php [L]
+RewriteRule ^cont_tournament_paid/$ Controller/cont_tournament_paid.php [L]
+
+
+RewriteRule ^inscriptions_confirmees(.*)$ Vue/registration_ok_management.php$1 
+RewriteRule ^inscriptions_en_cours(.*)$ Vue/registration_management.php [L]
+RewriteRule ^resultats(.*)$ Vue/results_management.php$1 [L]
+RewriteRule ^inscription(.*)$ /Vue/registration.php [L]
+RewriteRule ^menu(.*)$ Vue/menu.php/ [L]
+RewriteRule ^accueil(.*)$ Vue/homepage.php$1 [L]
+RewriteRule ^header_management(.*)$ /Vue/header_management.php [L]
+RewriteRule ^header_accueil(.*)$ /Vue/header_homepage.php [L]
+RewriteRule ^footer_accueil(.*)$ /Vue/footer_homepage.php [L]
+RewriteRule ^footer_management(.*)$ /Vue/footer_management.php [L]
+RewriteRule ^manches(.*)$ Vue/course_management.php [L]
+RewriteRule ^competitions(.*)$ Vue/tournament_management.php [L]
+
+
+
+
+
+
+
+
+
+
+
+
+
+

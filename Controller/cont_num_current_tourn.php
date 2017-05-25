@@ -5,7 +5,14 @@
 /* ----------------Num of current tournament----------------------*/
 function getNumCourTourn()
 {
-    $NumTourn = getCurrentTourn()[0] -> numTourn;
+    if(existsCurrentTourn()!=1)
+    {
+        $NumTourn = NULL;
+    }
+    else
+    {
+        $NumTourn = getCurrentTourn()[0] -> numTourn;
+    }
     
     return $NumTourn;
     

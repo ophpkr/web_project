@@ -1,12 +1,21 @@
 <?php include("./header_homepage.php"); ?>
-<?php require_once("../Controller/tools.php"); ?>
+<?php require_once("../Controller/cont_tools.php"); ?>
 
+<div id="modal2" class="modal modal-fixed-footer">
+ 
+ 
+      <?php if (isset($_GET["msg"])) 
+  {  
+  echo $_GET["msg"];
+  } ?>
+  </div>
+</div>
 <h1 class="center-align">S'inscrire à la compétition</h1>
 
 
         
           <div class="row">
-            <form method="POST" action = "../Controller/registration_contestant.php" class="col s12">
+            <form method="POST" action = "../Controller/cont_registration_contestant.php" class="col s12">
               <div class="row">
                 <div class="input-field col s12 center-align">
                   <input placeholder="Prenom" type="text" class="validate" name="firstname" required>

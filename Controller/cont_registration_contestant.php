@@ -2,7 +2,7 @@
 <?php require_once("../Modele/registration.php"); ?>
 <?php require_once("../Modele/category.php"); ?>
 <?php require_once("../Modele/tournament.php"); ?>
-<?php require_once("./tools.php"); ?>
+<?php require_once("./cont_tools.php"); ?>
 
 <?php
 
@@ -28,25 +28,25 @@ if(!empty(getCurrentTourn()[0]))
             if(!preg_match('/^[a-zA-Z-\s]+$/', $_POST['firstname']))
             {
                 $msg = "Votre prénom est incorrect \n Attention : les symboles '/', '-', '_' sont refusés";
-                echo '2';
+           
             }
         
             if(!preg_match('/^[0-9a-zA-Z-\s]+$/', $_POST['street']))
             {
                 $msg = "La ville entrée est incorrecte \n Attention : les symboles '/', '-', '_' sont refusés";
-                echo '3';
+       
             }
             
             if(!preg_match('/^[a-zA-Z-\s]+$/', $_POST['city']))
             {
                 $msg = "La ville entrée est incorrecte \n Attention : les symboles '/', '-', '_' sont refusés";
-                echo '4';
+            
             }
             
             if(!(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)))
                 {
                     $msg = "Votre email n'est pas valide";
-                    echo '5';
+                  
                 }
                 
             if(!preg_match('[F,H]', $_POST['sexe']))
@@ -55,24 +55,20 @@ if(!empty(getCurrentTourn()[0]))
             }
             //check the date
             $bDate = convertToDate($_POST['day'] ,$_POST['month'], $_POST['year']);
-            echo $bDate;
-            echo 'conv ok';
+            
             
             if(!preg_match('/^[0-9]+$/', $_POST['day']) || intval($_POST['day'])>31 || intval($_POST['day'])<1 )
             {
                 $msg = "Cette date n'existe pas";
-                echo '61';
                 
             }
             elseif(!preg_match('/^[0-9]+$/', $_POST['month']) || intval($_POST['month'])>12 || intval($_POST['month'])<1 )
             {                
                 $msg = "Cette date n'existe pas";
-                echo '62';
             }  
             elseif(!preg_match('/^[0-9]+$/', $_POST['year']))
             { 
                 $msg = "Cette date n'existe pas";
-                echo '63';
             }
             
             else
@@ -89,45 +85,38 @@ if(!empty(getCurrentTourn()[0]))
                 if(compareDates($bDate, $datemini -> format('Y-m-d')) != 1)
                 {
                     $msg = "Vous n'avez pas l'âge requis pour participer à cette compétition";
-                    echo '64';
                 }
                 
             }
-            //check the Postal Code
+
             if(!preg_match('/^[0-9]+$/', $_POST['pcode']) || strlen($_POST['pcode']) != 5)
             {
                 $msg = "Le code postal est incorect";
-                echo '7';
             }
             
             if(isset($_POST['phone']) && strlen($_POST['phone']) != 10)
             {
                 $msg = "Le numéro de téléphone est incorrect";
-                echo '8';
             }
             
             
             if (isset($_POST['havepermit']) && !isset($_POST['numpermit']))
             {
                 $msg = "Vous n'avez pas renseigné votre numéro de licence";
-                echo '10';
             }
             
             if(!isset($_POST['havepermit']))
             {
                 $numPermit = NULL;
-                echo 'a pas lic';
             }
             else
             {
                 $numPermit = $_POST['numpermit'];
-                echo 'a lic num ' . $_POST['numpermit'];
             }
             
             if(!isset($_POST['sexe']))
             {
                 $msg = "Vous n'avez pas mentionné votre sexe";
-                echo '11';
             }
             
             if(empty($_POST['phone']))
@@ -150,6 +139,8 @@ if(!empty(getCurrentTourn()[0]))
                 if(strtolower(noAccent($_POST['street'])) != $street)
                 {
                     updateContInfos($_POST['email'], strtolower(noAccent($_POST['street'])), $_POST['pcode'], ucwords(strtolower(noAccent($_POST['city']))), $phone);
+                    $msg = "Votre inscription a bien été prise en compte";
+                    header("Location: ../Vue/homepage.php/#regvalide?msg=" .$msg);
                 }
                 
                 $num = getNumCont($_POST['email']);
@@ -163,9 +154,9 @@ if(!empty(getCurrentTourn()[0]))
                         $_POST['email'], $phone, $numPermit);
                 
                 $num = getNumCont($_POST['email']);
-                echo 'bon';
-               // $msg = "Votre inscription a bien été prise en compte";
-                //header("Location: ../Vue/registration.php?msg=" .$msg);
+                
+                $msg = "Votre inscription a bien été prise en compte";
+                header("Location: ../Vue/homepage.php?msg=" .$msg);
             }
             
             
@@ -192,7 +183,7 @@ if(!empty(getCurrentTourn()[0]))
             $i = 0;
             while($cat == 0)
             {   
-                if($diff < $cats[$i]->maxiAge && $diff > $cats[$i]->miniAge)
+                if($diff <= $cats[$i]->maxiAge && $diff >= $cats[$i]->miniAge)
                 {
                     $cat = $cats[$i] -> numCat;
                 }

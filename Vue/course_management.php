@@ -1,5 +1,5 @@
-<?php require_once('../Controller/tools_regist_manag.php') ?>
-<?php require_once('../Controller/tools_course_management.php') ?>
+<?php require_once('../Controller/cont_tools_regist_manag.php') ?>
+<?php require_once('../Controller/cont_tools_course_management.php') ?>
 <?php include('header_management.php')?>
 <?php include('menu.php')?>
 
@@ -11,7 +11,7 @@
         <h2 class= "col s12 m9 l7 offset-m3 offset-l3">Création d'une manche</h2>
     </div>
     
-    <form method="POST" action = "../Controller/course_creation.php" >
+    <form method="POST" action = "../Controller/cont_course_creation.php" >
         <div class= "col s12 m9 l7 offset-m3 offset-l3">
            
             <input  placeholder="nom de la manche" type="text" classe = "col s12 m9 l7  validate" name="namecourse" size = "15" required>
@@ -24,63 +24,87 @@
         
         </div>
     </form>
-        
-</div>
 
-<div class= "row">   
+
+
+
     <div>
         <h2 class= "col s12 m9 l7 offset-m3 offset-l3">Entrer les résultats</h2>
     </div>
+
+
+
     <?php if(!empty($namecourse))
     { ?>
-    <div>
-            <div>               
-                <table class="bordered responsive-table col s12 m9 l7 offset-m4 offset-l4">
-                    <thead>
-                        <tr>
-                            <th>Manche</th>
-                            <th>Coefficient</th>
-                            <th>Dossard</th>
-                        </tr>
-                    </thead>
-        
-                <tbody>
-                  
-                    <?php for($i = 0; $i<sizeof($namecourse); $i++)
-                    {?>
+
+<div>
+        <div class="col s12 m9 l9 offset-m4 offset-l4">              
+            <table class = "bordered responsive-table">
+                <thead>
                     <tr>
+                        <th></th>
+                        <th>Manche</th>
+                        <th>Coefficient</th>
+                        <th>Dossard</th>
+                    </tr>
+                </thead>
+    
+            <tbody>
+                  
+                    
+                    <?php for($i = 0; $i < sizeof($namecourse); $i++)
+                    { ?>
+                <div class="col s12 m9 l9 offset-m4 offset-l4">      
+                    <tr>                        
+                    <td> <a class="waves-effect waves-light" href="<?php echo '#modc' . $numcourse[$i]; ?>"><i class="material-icons">delete</i></a></td>
                     <td><?php echo $namecourse[$i]; ?></td>
                     <td><?php echo $coeffcourse[$i]; ?></td>
                     <td>
-                        <form method="POST" action = "../Controller/add_result.php" >
+                        <form method="POST" action = "../Controller/cont_add_result.php" >
                         <input type= "text" name= "bib"></input>
                         <input type= "hidden" name= "numcourse" value = "<?php echo $numcourse[$i] ; ?>"></input>
                         <button class = "waves-effect waves-light btn" type="submit">ok</button>
                     </form>
                     </td>
                     </tr>
-                    <?php }?>
                     
                   
                 </tbody>
               </table>
                     
-            
-            </div>
-        
-            
-    </div>
-</div>
-    <?php }
+        </div>
+        </div>
+
+        </div>    
+    
+    
+    <div id="<?php echo 'modc' . $numcourse[$i]; ?>" class="modal">
+         <div class="modal-content">
+           <h4>Etes-vous sûr de vouloir supprimer cette manche?</h4>
+           <p>Attention : cette action sera irréversible</p>
+         </div>
+         <div class="modal-footer">
+           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"></a>
+            <form method="GET" action = "../Controller/cont_delete_course.php" >
+                <input type= "hidden" name= "numcourse" value = "<?php echo $numcourse[$i] ; ?>"></input>
+                <button class = "modal-action modal-close waves-effect waves-green btn-flat" type="submit">Oui</button>
+            </form>
+           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Annuler</a>
+         </div>
+       </div> 
+
+    
+    <?php }}
     else {?>
-<div class= "row ">
-    <div>
+
             <div>               
                 <table class="bordered responsive-table col s12 m9 l7 offset-m4 offset-l4">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Manche</th>
                             <th>Dossard</th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -89,5 +113,8 @@
             </div>
         
             
-    </div> <?php } ?> 
+     <?php } ?> 
 </div>
+
+
+<?php include('footer_management.php')?>

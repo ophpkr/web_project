@@ -2,7 +2,7 @@
 
 <?php
 echo 'entré';
-deleteTourn($_GET['id']);
+deleteTourn($_GET['numtourn']);
 
 echo 'sorti';
 ?>

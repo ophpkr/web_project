@@ -62,7 +62,7 @@ function regNotPaid($numtourn)
 {
     $db = db_connection();
     
-    $req = $db->prepare('SELECT reg.numReg, co.name, co.firstName
+    $req = $db->prepare('SELECT co.numCont, co.name, co.firstName, reg.numReg, co.sexe, co.streetName, co.pCode, co.city, co.email, co.telNum
                         FROM contestant AS co, registration AS reg
                         WHERE co.numCont = reg.numCont
 							AND reg.numTourn =:numtourn
@@ -155,7 +155,7 @@ function notAP($numtourn)
 {
     $db = db_connection();
     
-    $req = $db->prepare('SELECT co.name, co.firstName, reg.numReg
+    $req = $db->prepare('SELECT co.numCont, co.name, co.firstName, reg.numReg, co.sexe, co.streetName, co.pCode, co.city, co.email, co.telNum
                         FROM contestant AS co, registration AS reg, tournament AS tou
                         WHERE co.numCont = reg.numCont
 							AND tou.numTourn = reg.numTourn
@@ -230,7 +230,7 @@ function getRegistrationOk($numtourn)
 {
 	$db = db_connection();
     
-    $req = $db->prepare('SELECT co.numCont, co.name, co.firstName, reg.numReg
+    $req = $db->prepare('SELECT co.numCont, co.name, co.firstName, reg.numReg, co.sexe, co.streetName, co.pCode, co.city, co.email, co.telNum
                         FROM contestant AS co, registration AS reg
                         WHERE co.numCont = reg.numCont
 							AND reg.numTourn = :numtourn
@@ -258,4 +258,15 @@ function bibExists($bib)
 	return $res;
 }
 
+function deleteRegistration($numReg)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('DELETE FROM registration
+                        WHERE numReg =:numreg');
+    
+    $req->execute(array(':numreg' => $numReg));
+    
+    return 1;
+}
 ?>

@@ -27,16 +27,17 @@ function mailExists($mail)
 	return $res;
 }
 
-function getInfos($numcont)
+function getInfos($reg)
 {
 	$db = db_connection();
     
-    $req = $db->prepare('SELECT co.name, co.firstName, co.dBirth, co.sexe, co.streetName, co.pCode, co.city, co.email, co.telNum
-                        FROM contestant
-                        WHERE co.numCont = :numcont
+    $req = $db->prepare('SELECT reg.numReg, co.name, co.firstName, co.dBirth, co.sexe, co.streetName, co.pCode, co.city, co.email, co.telNum
+                        FROM contestant AS co, registration AS reg
+                        WHERE co.numCont = reg.numCont
+									AND reg.numReg = :numreg
 								');
     
-    $req->execute(array(':numcont' => $numcont));
+    $req->execute(array(':numreg' => $numreg));
     $contestantsok = $req->fetchall(PDO::FETCH_OBJ);
 
     return $contestantsok;

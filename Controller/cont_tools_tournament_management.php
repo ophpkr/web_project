@@ -1,3 +1,4 @@
+<?php require_once('cont_num_current_tourn.php'); ?>
 <?php
 
 function getNumTournPastDesc()
@@ -59,8 +60,8 @@ $nameTournPast = getNameTournPastDesc();
 $dSartTournPast = getdStartTournPastDesc();
 $dEndTournPast = getdEndTournPastDesc();
 
-
-
+$existtourncurr = existsCurrentTourn();
+$numCurrentTourn = getNumCourTourn();
 
 
 

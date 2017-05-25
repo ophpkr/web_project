@@ -1,5 +1,6 @@
-<?php require_once('./num_current_tourn.php'); ?>
+<?php require_once('./cont_num_current_tourn.php'); ?>
 <?php require_once('../Modele/course.php'); ?>
+<?php require_once('./cont_tools.php'); ?>
 
 <?php
 

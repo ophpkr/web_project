@@ -1,6 +1,6 @@
 <?php require_once("../Modele/tournament.php"); ?>
-<?php require_once("./num_current_tourn.php"); ?>
-<?php require_once("./tools.php"); ?>
+<?php require_once("./cont_num_current_tourn.php"); ?>
+<?php require_once("./cont_tools.php"); ?>
 
 <?php
 

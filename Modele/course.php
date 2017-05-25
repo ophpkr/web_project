@@ -64,7 +64,7 @@ function deleteCourse($numcourse)
     $db = db_connection();
     
     $req = $db->prepare('DELETE FROM course
-                        WHERE numcourse =:numcourse');
+                        WHERE numCourse =:numcourse');
     
     $req->execute(array(':numcourse' => $numcourse));
     
