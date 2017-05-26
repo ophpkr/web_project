@@ -29,16 +29,16 @@
         
 
     <body>
-			<nav class="navbar indigo lighten-1">
+<nav class="navbar indigo lighten-1">
 				<div class="nav-wrapper">
 					<a href="#" class="brand-logo right">FORT BOYARD CHALLENGE</a>
 					<ul id="nav-mobile" class="left hide-on-med-and-down">
-						<li><a href="./homepage.php">Accueil</a></li>
-						<li><a href="./registration.php">Inscription</a></li>
+						<li><a href="homepage.php">Accueil</a></li>
+						<li><a href="registration.php">Inscription</a></li>
 						<li><a href="#">Résultats</a></li>
 					</ul>
 				</div>
-		</nav>
+</nav>
         
 		<main>
   

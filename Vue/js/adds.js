@@ -58,7 +58,9 @@ $(document).ready(function(){
 //$('#modal1').modal('open');
 //$('#modal1').modal('close');      
 
-
+    $( document ).ready(function() {
+      $(".button-collapse").sideNav();
+    });
 
 
 
