@@ -100,7 +100,7 @@ function getInfosScore($numReg, $numTourn)
     return $data;
 }
 
-function getNumdidCourse($numcourse)
+function getNumDidCourse($numcourse)
 {
 	$db = db_connection();
     
@@ -115,6 +115,9 @@ function getNumdidCourse($numcourse)
     $data = $req->fetchall(PDO::FETCH_OBJ);
 
     return $data;
-
 }
+
+
+
+
 ?>

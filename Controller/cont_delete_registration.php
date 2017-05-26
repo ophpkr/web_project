@@ -2,10 +2,10 @@
 
 <?php
 
-echo 'entré';
+
 deleteRegistration($_GET['numreg']);
 
-echo 'sorti';
+header('Location : ../Vue/registration_management.php'); 
 
 
 ?>

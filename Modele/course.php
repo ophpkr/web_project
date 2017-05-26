@@ -105,6 +105,17 @@ function setClosed($numcourse)
     return 1;
 }
 
+function sumCoeffCourse($numtourn)
+{
+	$db = db_connection();
+    $req = $db->prepare('SELECT SUM(coeff) AS sum
+                        FROM course
+                        WHERE numTourn =:numtourn');
+	    
+	$req->execute(array(':numtourn' => $numtourn));
+    $res = $req->fetchall(PDO::FETCH_OBJ);
+	return $res[0] -> sum;
+}
 
 
 

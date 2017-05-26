@@ -241,6 +241,25 @@ function getRegistrationOk($numtourn)
 	
 }
 
+
+
+function getNumberCont($numtourn)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT reg.numReg
+                        FROM registration AS reg
+                        WHERE reg.numTourn = :numtourn
+							AND reg.paid = 1
+							AND (reg.parentAut != 0 OR reg.parentaut IS NULL)
+						');
+    
+    $req->execute(array(':numtourn' => $numtourn));
+    $number = $req->rowCount();
+
+    return $number;
+}
+
 function bibExists($bib)
 {
 	$db = db_connection();

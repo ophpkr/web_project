@@ -1,8 +1,7 @@
 <?php require_once('../Modele/tournament.php'); ?>
 
 <?php
-echo 'entré';
-deleteTourn($_GET['numtourn']);
 
-echo 'sorti';
+deleteTourn($_GET['numtourn']);
+header('Location : ../Vue/tournament_management.php');
 ?>

@@ -9,10 +9,11 @@ function calcScoreTot($numtourn, $numreg)
 {
 
     $data = getInfosScore($numreg, $numtourn);
-    $score = NULL;
+    $score = (getNumberCont($numtourn) + 1) * sumCoeffCourse($numtourn);
 
     if(!empty($data))
-    {        
+    {
+        $score = 0;
             
         for($i = 0; $i < sizeof($data); $i++)
         {
