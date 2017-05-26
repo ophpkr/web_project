@@ -27,7 +27,7 @@ function mailExists($mail)
 	return $res;
 }
 
-function getInfos($reg)
+function getInfos($numreg)
 {
 	$db = db_connection();
     

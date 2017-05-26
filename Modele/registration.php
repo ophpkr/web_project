@@ -2,9 +2,7 @@
 
 <?php
 
-/*
- *creation of a new registration in db
- */
+
 function setRegistration($numpermit, $paraut, $numcont, $numtourn, $numcat)
 {
     print_r(array($numpermit, $paraut, $numcont, $numtourn, $numcat));
@@ -32,9 +30,7 @@ function setRegistration($numpermit, $paraut, $numcont, $numtourn, $numcat)
 
 
 
-/*
- *return numReg, name, firstName of contestants having paid the registration
- */
+
 function regPaid($numtourn)
 {
     $db = db_connection();
@@ -269,4 +265,37 @@ function deleteRegistration($numReg)
     
     return 1;
 }
+
+function numberReg($numtourn)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT numReg
+                        FROM registration
+                        WHERE numTourn =:numtourn');
+	    
+	$req->execute(array(':numtourn' => $numtourn));
+	$res = $req->rowCount();
+	return $res;
+}
+
+function getInfosReg($numreg)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT reg.numReg, co.name, co.firstName, co.sexe, reg.bib
+                        FROM contestant AS co, registration AS reg
+                        WHERE co.numCont = reg.numCont
+									AND reg.numReg = :numreg
+								');
+    
+    $req->execute(array(':numreg' => $numreg));
+    $infos = $req->fetchall(PDO::FETCH_OBJ);
+
+    return $infos;
+	
+}
+
+
+
 ?>

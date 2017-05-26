@@ -69,15 +69,18 @@
                     </tr>
                     
                   
-                </tbody>
+                
+    
+    <?php } ?>
+    </tbody>
               </table>
                     
         </div>
         </div>
 
-        </div>    
-    
-    
+        </div>
+    <?php for($i = 0; $i < sizeof($namecourse); $i++)
+    { ?>
     <div id="<?php echo 'modc' . $numcourse[$i]; ?>" class="modal">
          <div class="modal-content">
            <h4>Etes-vous sûr de vouloir supprimer cette manche?</h4>

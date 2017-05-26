@@ -71,5 +71,22 @@ function deleteCourse($numcourse)
     return 1;
 }
 
+function getNumCourse($numtourn)
+{
+	$db = db_connection();
+    $req = $db->prepare('SELECT numCourse
+                        FROM course
+                        WHERE numTourn =:numtourn');
+	    
+	$req->execute(array(':numtourn' => $numtourn));
+    $res = $req->fetchall(PDO::FETCH_OBJ);
+	return $res;
+	
+}
+
+
+
+
+
 
 ?>

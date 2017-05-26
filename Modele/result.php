@@ -74,5 +74,30 @@ function bibRegistered($numreg, $numcourse)
     
 }
 
+function getInfosScore($numReg, $numTourn)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT reg.numReg, reg.bib, co.name, co.firstName, co.sexe, make.score, cat.nameCat
+                        FROM make, registration AS reg, contestant AS co, course, category AS cat
+                        WHERE reg.numCont = co.numCont
+							AND reg.numReg = make.numReg
+							AND make.numCourse = course.numCourse
+							AND reg.numCat = cat.numCat
+							AND reg.numTourn = course.numTourn
+							AND make.numReg = :numreg
+							AND reg.numTourn = :numtourn'
+						);
+    
+    
+    $req->execute(array(
+						':numtourn' => $numTourn,
+						':numreg' => $numReg
+						));
+	
+    $data = $req->fetchall(PDO::FETCH_OBJ);
+
+    return $data;
+}
 
 ?>
