@@ -29,7 +29,7 @@
         
 
     <body>
-			<nav class="navbar">
+			<nav class="navbar indigo lighten-1">
 				<div class="nav-wrapper">
 					<a href="#" class="brand-logo right">FORT BOYARD CHALLENGE</a>
 					<ul id="nav-mobile" class="left hide-on-med-and-down">

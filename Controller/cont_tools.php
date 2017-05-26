@@ -86,13 +86,63 @@ function getNameCourTourn()
     
 }
 
-/*function getNumCourTourn()
+function writeInFrench($date)
 {
-    $NumTourn = getCurrentTourn()[0] -> numTourn;;
+    $year = date("Y", strtotime($date));
+    $month = date("m", strtotime($date));
+    $day = date("d", strtotime($date));
     
-    return $NumTourn;
+    if($month == 1)
+    {
+        $month = 'janvier';
+    }
+    elseif($month == 2)
+    {
+        $month = 'février';
+    }
+    elseif($month == 3)
+    {
+        $month = 'mars';
+    }
+    elseif($month == 4)
+    {
+        $month = 'avril';
+    }
+    elseif($month == 5)
+    {
+        $month = 'mai';
+    }
+    elseif($month == 6)
+    {
+        $month = 'juin';
+    }
+    elseif($month == 7)
+    {
+        $month = 'juillet';
+    }
+    elseif($month == 8)
+    {
+        $month = 'août';
+    }
+    elseif($month == 9)
+    {
+        $month = 'septembre';
+    }
+    elseif($month == 10)
+    {
+        $month = 'octobre';
+    }
+    elseif($month == 11)
+    {
+        $month = 'novembre';
+    }
+    else
+    {
+        $month = 'décembre';
+    }
     
-}*/
+    return ($day . ' ' . $month . ' ' . $year);
+}
 
 
 function getNumsTourn()
@@ -156,17 +206,31 @@ function getNumsTournForReg()
 }
 
 
-
-
-
-
-
-
-
 $numTourndesc = getNumsTourn();
 $nameCourTourn = getNameCourTourn();
 $dStartCurrentTourn = getdStartCourTourn();
-$dEndCurrentTourn = getdEndCourTourn(); 
+$dEndCurrentTourn = getdEndCourTourn();
 
+$sDateFrenchCourTourn = writeInFrench($dStartCurrentTourn);
+$eDateFrenchCourTourn = writeInFrench($dEndCurrentTourn);
+
+function announceDateCourTourn()
+{
+    $dStartCurrentTourn = getdStartCourTourn();
+    $dEndCurrentTourn = getdEndCourTourn();
+
+    $sDateFrenchCourTourn = writeInFrench($dStartCurrentTourn);
+    $eDateFrenchCourTourn = writeInFrench($dEndCurrentTourn);
+    if(existsCurrentTourn()!=1)
+    {
+        return NULL;
+    }
+    else
+    {
+        return 'La prochaine compétition aura lieu du ' . $sDateFrenchCourTourn . 'au ' . $eDateFrenchCourTourn;
+    }
+}
+
+$an = announceDateCourTourn();
 
 ?>

@@ -1,7 +1,7 @@
-<?php require_once('../Controller/cont_tools_regist_manag.php') ?>
-<?php require_once('../Controller/cont_tools_course_management.php') ?>
-<?php include('header_management.php')?>
-<?php include('menu.php')?>
+<?php require_once('../Controller/cont_tools_regist_manag.php'); ?>
+<?php require_once('../Controller/cont_tools_course_management.php'); ?>
+<?php include('header_management.php');?>
+<?php include('menu.php');?>
 
 <div class= "row">
     <div>
@@ -19,7 +19,7 @@
 
             <input placeholder="coefficient" type="number" class="col s12 m2 l2 validate" name="coeff" min="1" max="10" required>
 
-            <button class = "waves-effect waves-light btn" type="submit">Créer</button>
+            <button class = "waves-effect waves-light btn orange lighten-1" type="submit">Créer</button>
                 
         
         </div>
@@ -63,7 +63,7 @@
                         <form method="POST" action = "../Controller/cont_add_result.php" >
                         <input type= "text" name= "bib"></input>
                         <input type= "hidden" name= "numcourse" value = "<?php echo $numcourse[$i] ; ?>"></input>
-                        <button class = "waves-effect waves-light btn" type="submit">ok</button>
+                        <button class = "waves-effect waves-light btn orange lighten-1" type="submit">ok</button>
                     </form>
                     </td>
                     </tr>

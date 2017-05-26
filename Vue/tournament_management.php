@@ -9,9 +9,9 @@
    
 <div class= "row">
     <div class="col s12 m9 l7 offset-m4 offset-l4">
-        <div class="card horizontal l2">
+      <div class="card horizontal l2">
       <div class="card-image cardheight">
-        <img src="http://lorempixel.com/100/190/nature/6">
+        <img>
       </div>
       <div class="card-stacked">
         <div class="card-content">
@@ -40,9 +40,9 @@
 <?php if($existtourncurr!=0)
 { ?>
     <div class="col s12 m9 l7 offset-m4 offset-l4">
-    <div class="card horizontal s3 m4 l4">
+    <div class="card horizontal s3 m9 l7">
       <div class="card-image cardheight">
-        <img src="http://lorempixel.com/100/190/nature/6">
+        <img src= "./image/windsurf3.png">
       </div>
       <div class="card-stacked">
         <div class="card-content">

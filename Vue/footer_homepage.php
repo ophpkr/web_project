@@ -2,7 +2,7 @@
 	<footer>
 		
 		<div id="connect">
-			<a href="#connect" id = "estadmin">admin</a>
+			<a class= "offset-m2 offset-l2 offset-s1" href="#connect" id = "estadmin">admin</a>
 			<form method="POST" action = "../Controller/cont_admin_connection.php" >
 				<div id ="login" class="hide">
 				   

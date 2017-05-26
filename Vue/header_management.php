@@ -24,7 +24,7 @@
 		</head>
       
    </head>
-   <body>
+   <body class= " indigo lighten-5">
 	
 		<?php
 		if(!isset($_COOKIE["type"]))
