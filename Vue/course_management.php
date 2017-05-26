@@ -68,7 +68,7 @@
                             <form method="POST" action = "../Controller/cont_add_result.php" >
                                 <div class="row">
                                     
-                                    <input type= "text" name= "bib" width="50px"></input>
+                                    <input class="col m2 l2 offset" type= "text" name= "bib" width="50px"></input>
                                     <input type= "hidden" name= "numcourse" value = "<?php echo $numcourse[$i] ; ?>"></input>
                                     <button class = "waves-effect waves-light btn orange lighten-1" type="submit">ok</button>
                                 </div>
@@ -127,10 +127,11 @@
                 <table class="bordered responsive-table col s12 m9 l7 offset-m4 offset-l4">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>Sup</th>
+                            <th>Fin</th>
                             <th>Manche</th>
+                            <th>Coefficient</th>
                             <th>Dossard</th>
-                            <th></th>
                         </tr>
                     </thead>
                 </table>
