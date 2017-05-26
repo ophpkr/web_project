@@ -5,17 +5,15 @@
 
 <?php
 
-$numtourn = 15;
-
 function calcScoreTot($numtourn, $numreg)
 {
 
     $data = getInfosScore($numreg, $numtourn);
-    $score = 0;
+    $score = NULL;
 
     if(!empty($data))
     {        
-               
+            
         for($i = 0; $i < sizeof($data); $i++)
         {
             $score = $score + $data[$i] -> score;
@@ -42,8 +40,6 @@ function sepScore($numtourn)
      return $scores;
 }
 
-print_r(sepScore($numtourn));
-
 function sepReg($numtourn)
 {
     $regs = array();
@@ -59,8 +55,6 @@ function sepReg($numtourn)
     }
      return $regs;
 }
-
-print_r(sepReg($numtourn));
 
 function orderRegScore($numtourn)
 {
@@ -84,7 +78,27 @@ function orderRegScore($numtourn)
     
 }
 
-print_r(orderRegScore($numtourn));
+function orderScore($numtourn)
+{
+    $scores = sepScore($numtourn);
+    
+    for($i = 0; $i < sizeof($scores)-1; $i++)
+    {
+        for($j = $i+1; $j < sizeof($scores); $j++)
+        {
+            if($scores[$i]>$scores[$j])
+            {
+                $change = $scores[$i];
+                $scores[$i] = $scores[$j];
+                $scores[$j] = $change;
+            }
+        }
+    }
+    
+    return $scores;
+    
+}
+
 
 function getNamesScore($numtourn)
 {
@@ -101,7 +115,6 @@ function getNamesScore($numtourn)
     return $list;
 }
 
-print_r(getNamesScore($numtourn));
 
 function getfNamesScore($numtourn)
 {
@@ -118,9 +131,8 @@ function getfNamesScore($numtourn)
     return $list;
 }
 
-print_r(getfNamesScore($numtourn));
 
-function getSexe($numtourn)
+function getSexeScore($numtourn)
 {
     $list = array();
     
@@ -135,9 +147,8 @@ function getSexe($numtourn)
     return $list;
 }
 
-print_r(getSexe($numtourn));
 
-function getBib($numtourn)
+function getBibScore($numtourn)
 {
     $list = array();
     
@@ -152,6 +163,13 @@ function getBib($numtourn)
     return $list;
 }
 
-print_r(getBib($numtourn));
+$numcourtourn = getNumCourTourn();
+
+$scorescour = orderScore($numcourtourn);
+$namescour = getNamesScore($numcourtourn);
+$fnamescour = getfNamesScore($numcourtourn);
+$sexescour = getSexeScore($numcourtourn);
+$bibscour = getBibScore($numcourtourn);
+
 
 ?>
