@@ -22,36 +22,37 @@ if(!empty(getCurrentTourn()[0]))
             {
     
                 $msg = "Votre nom est incorrect \n Attention : les symboles '/', '-', '_' sont refusés";
-                header("Location : ../Vue/registration.php");
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
         
             if(!preg_match('/^[a-zA-Z-\s]+$/', $_POST['firstname']))
             {
                 $msg = "Votre prénom est incorrect \n Attention : les symboles '/', '-', '_' sont refusés";
-           
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
         
             if(!preg_match('/^[0-9a-zA-Z-\s]+$/', $_POST['street']))
             {
                 $msg = "La ville entrée est incorrecte \n Attention : les symboles '/', '-', '_' sont refusés";
-       
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             
             if(!preg_match('/^[a-zA-Z-\s]+$/', $_POST['city']))
             {
                 $msg = "La ville entrée est incorrecte \n Attention : les symboles '/', '-', '_' sont refusés";
-            
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             
             if(!(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)))
                 {
                     $msg = "Votre email n'est pas valide";
-                  
+                    header("Location : ../Vue/registration.php?msg=".$msg);
                 }
                 
             if(!preg_match('[F,H]', $_POST['sexe']))
             {
                 $msg = "Aucun sexe renseigné";
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             //check the date
             $bDate = convertToDate($_POST['day'] ,$_POST['month'], $_POST['year']);
@@ -60,15 +61,17 @@ if(!empty(getCurrentTourn()[0]))
             if(!preg_match('/^[0-9]+$/', $_POST['day']) || intval($_POST['day'])>31 || intval($_POST['day'])<1 )
             {
                 $msg = "Cette date n'existe pas";
-                
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             elseif(!preg_match('/^[0-9]+$/', $_POST['month']) || intval($_POST['month'])>12 || intval($_POST['month'])<1 )
             {                
                 $msg = "Cette date n'existe pas";
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }  
             elseif(!preg_match('/^[0-9]+$/', $_POST['year']))
             { 
                 $msg = "Cette date n'existe pas";
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             
             else
@@ -85,6 +88,7 @@ if(!empty(getCurrentTourn()[0]))
                 if(compareDates($bDate, $datemini -> format('Y-m-d')) != 1)
                 {
                     $msg = "Vous n'avez pas l'âge requis pour participer à cette compétition";
+                    header("Location : ../Vue/registration.php?msg=".$msg);
                 }
                 
             }
@@ -92,17 +96,20 @@ if(!empty(getCurrentTourn()[0]))
             if(!preg_match('/^[0-9]+$/', $_POST['pcode']) || strlen($_POST['pcode']) != 5)
             {
                 $msg = "Le code postal est incorect";
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             
             if(isset($_POST['phone']) && strlen($_POST['phone']) != 10)
             {
                 $msg = "Le numéro de téléphone est incorrect";
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             
             
             if (isset($_POST['havepermit']) && !isset($_POST['numpermit']))
             {
                 $msg = "Vous n'avez pas renseigné votre numéro de licence";
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             
             if(!isset($_POST['havepermit']))
@@ -117,6 +124,7 @@ if(!empty(getCurrentTourn()[0]))
             if(!isset($_POST['sexe']))
             {
                 $msg = "Vous n'avez pas mentionné votre sexe";
+                header("Location : ../Vue/registration.php?msg=".$msg);
             }
             
             if(empty($_POST['phone']))
@@ -132,8 +140,7 @@ if(!empty(getCurrentTourn()[0]))
             
             if(mailExists($_POST['email']))
             {
-                
-                echo 'mail existant';
+
                 $street = getStreet($_POST['email']);
                 
                 if(strtolower(noAccent($_POST['street'])) != $street)
@@ -201,20 +208,22 @@ if(!empty(getCurrentTourn()[0]))
         }
         else
         {
-            header("Location : ../Vue/homepage.php");
-            $msg = "Vous 'avez pas rempli tous les champs obligatoires";
+            $msg = "Vous n'avez pas rempli tous les champs obligatoires";
+            header("Location : ../Vue/registration.php?msg=".$msg);            
         }
         
     }
     else
     {
         $msg = "Les dates d'inscriptions pour cette compétition ont pris fin";
+        header("Location : ../Vue/registration.php?msg=".$msg);   
     }
     
 }
 else
 {
     $msg = "Il n'y a pas de compétition à laquelle s'inscrire";
+    header("Location : ../Vue/registration.php?msg=".$msg);   
     
 }
     

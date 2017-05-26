@@ -100,4 +100,21 @@ function getInfosScore($numReg, $numTourn)
     return $data;
 }
 
+function getNumdidCourse($numcourse)
+{
+	$db = db_connection();
+    
+    $req = $db->prepare('SELECT numReg
+                        FROM make
+                        WHERE
+							numCourse =:numcourse
+						');
+    
+    
+    $req->execute(array(':numcourse' => $numcourse));
+    $data = $req->fetchall(PDO::FETCH_OBJ);
+
+    return $data;
+
+}
 ?>

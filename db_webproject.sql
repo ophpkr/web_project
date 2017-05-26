@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 20 Mai 2017 à 13:43
+-- Généré le :  Ven 26 Mai 2017 à 07:58
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -27,16 +27,12 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `category`;
-CREATE TABLE IF NOT EXISTS `category` (
-  `numCat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `category` (
+  `numCat` int(10) UNSIGNED NOT NULL,
   `nameCat` varchar(20) NOT NULL,
   `miniAge` int(3) UNSIGNED NOT NULL,
-  `maxiAge` int(3) UNSIGNED NOT NULL,
-  PRIMARY KEY (`numCat`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
---
-
+  `maxiAge` int(3) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -45,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `category` (
 --
 
 DROP TABLE IF EXISTS `contestant`;
-CREATE TABLE IF NOT EXISTS `contestant` (
-  `numCont` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `contestant` (
+  `numCont` int(10) UNSIGNED NOT NULL,
   `name` varchar(36) NOT NULL,
   `firstName` varchar(32) NOT NULL,
   `dBirth` date NOT NULL,
@@ -56,15 +52,10 @@ CREATE TABLE IF NOT EXISTS `contestant` (
   `city` varchar(32) NOT NULL,
   `email` varchar(60) NOT NULL,
   `telNum` varchar(10) DEFAULT NULL,
-  `sizeBib` varchar(3) NOT NULL,
-  `numPermit` varchar(15) DEFAULT NULL,
   `isAdmin` int(1) UNSIGNED NOT NULL,
   `login` varchar(20) DEFAULT NULL,
-  `pwd` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`numCont`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
-
-
+  `pwd` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -73,16 +64,13 @@ CREATE TABLE IF NOT EXISTS `contestant` (
 --
 
 DROP TABLE IF EXISTS `course`;
-CREATE TABLE IF NOT EXISTS `course` (
-  `numCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `course` (
+  `numCourse` int(10) UNSIGNED NOT NULL,
   `nameCourse` varchar(15) NOT NULL,
   `coeff` int(2) UNSIGNED NOT NULL,
-  `numTourn` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`numCourse`),
-  KEY `numTourn` (`numTourn`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
-
+  `closed` int(1) NOT NULL DEFAULT '0',
+  `numTourn` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -91,13 +79,10 @@ CREATE TABLE IF NOT EXISTS `course` (
 --
 
 DROP TABLE IF EXISTS `make`;
-CREATE TABLE IF NOT EXISTS `make` (
+CREATE TABLE `make` (
   `score` int(10) NOT NULL DEFAULT '0',
   `numReg` int(10) UNSIGNED NOT NULL,
-  `numCourse` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`numReg`,`numCourse`),
-  KEY `numReg` (`numReg`),
-  KEY `numCourse` (`numCourse`)
+  `numCourse` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -107,19 +92,15 @@ CREATE TABLE IF NOT EXISTS `make` (
 --
 
 DROP TABLE IF EXISTS `registration`;
-CREATE TABLE IF NOT EXISTS `registration` (
-  `numReg` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `numPermit` varchar(15) NOT NULL,
-  `parentAut` int(1) NOT NULL,
+CREATE TABLE `registration` (
+  `numReg` int(10) UNSIGNED NOT NULL,
+  `numPermit` varchar(15) DEFAULT NULL,
+  `parentAut` int(1) DEFAULT NULL,
   `paid` int(1) NOT NULL,
-  `bib` int(3) NOT NULL,
+  `bib` int(3) DEFAULT NULL,
   `numCont` int(10) UNSIGNED NOT NULL,
   `numTourn` int(10) UNSIGNED NOT NULL,
-  `numCat` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`numReg`),
-  KEY `numCont` (`numCont`),
-  KEY `numTourn` (`numTourn`),
-  KEY `numCat` (`numCat`)
+  `numCat` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -129,16 +110,93 @@ CREATE TABLE IF NOT EXISTS `registration` (
 --
 
 DROP TABLE IF EXISTS `tournament`;
-CREATE TABLE IF NOT EXISTS `tournament` (
-  `numTourn` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tournament` (
+  `numTourn` int(10) UNSIGNED NOT NULL,
   `nameTourn` varchar(20) NOT NULL,
   `dStart` date NOT NULL,
   `dEnd` date NOT NULL,
-  PRIMARY KEY (`numTourn`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `regClosed` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Index pour les tables exportées
+--
 
+--
+-- Index pour la table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`numCat`),
+  ADD UNIQUE KEY `nameCat` (`nameCat`),
+  ADD UNIQUE KEY `miniAge` (`miniAge`),
+  ADD UNIQUE KEY `maxiAge` (`maxiAge`);
 
+--
+-- Index pour la table `contestant`
+--
+ALTER TABLE `contestant`
+  ADD PRIMARY KEY (`numCont`),
+  ADD UNIQUE KEY `u_mail` (`email`);
+
+--
+-- Index pour la table `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`numCourse`),
+  ADD KEY `numTourn` (`numTourn`);
+
+--
+-- Index pour la table `make`
+--
+ALTER TABLE `make`
+  ADD PRIMARY KEY (`numReg`,`numCourse`),
+  ADD KEY `numReg` (`numReg`),
+  ADD KEY `numCourse` (`numCourse`);
+
+--
+-- Index pour la table `registration`
+--
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`numReg`),
+  ADD KEY `numCont` (`numCont`),
+  ADD KEY `numTourn` (`numTourn`),
+  ADD KEY `numCat` (`numCat`);
+
+--
+-- Index pour la table `tournament`
+--
+ALTER TABLE `tournament`
+  ADD PRIMARY KEY (`numTourn`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `category`
+--
+ALTER TABLE `category`
+  MODIFY `numCat` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT pour la table `contestant`
+--
+ALTER TABLE `contestant`
+  MODIFY `numCont` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+--
+-- AUTO_INCREMENT pour la table `course`
+--
+ALTER TABLE `course`
+  MODIFY `numCourse` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT pour la table `registration`
+--
+ALTER TABLE `registration`
+  MODIFY `numReg` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT pour la table `tournament`
+--
+ALTER TABLE `tournament`
+  MODIFY `numTourn` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Contraintes pour les tables exportées
 --

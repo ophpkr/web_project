@@ -84,7 +84,26 @@ function getNumCourse($numtourn)
 	
 }
 
+function setClosed($numcourse)
+{
+	$db = db_connection();
+	$req = $db -> prepare('UPDATE course
+                          SET closed = 1
+                          WHERE numCourse =:numcourse');
+    try{
+        
+        $req->execute(array(':numcourse' => $numcourse));
+    }
+    catch(PDOException $e)
+    {      
+    
+        echo 'PDOException: ' . $e->getMessage();
+        exit();
+    }
+    
 
+    return 1;
+}
 
 
 

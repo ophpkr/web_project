@@ -7,7 +7,7 @@
             <a href= "../Controller/cont_deconnect.php" >Déconnexion</a>
         </li>
         <li class= "logo">
-            <a href= "./tournament_management.php" class= "brand-logo">yo</a>
+            <a href= "./tournament_management.php" class= "brand-logo">Gestion des compétitions</a>
         </li>
         
         <li class="no-padding">
@@ -30,5 +30,5 @@
     
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> 
-<script type="text/javascript" src="/web_project/Vue/js/adds.js"></script>
+<script type="text/javascript" src="js/adds.js"></script>
     

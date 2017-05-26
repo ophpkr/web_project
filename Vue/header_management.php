@@ -12,14 +12,14 @@
     
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/web_project/Vue/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 	
     
     <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet" type='text/css'>
 				
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		
-	  <link rel="stylesheet" type="text/css" href="/web_project/Vue/css/adds.css">
+	  <link rel="stylesheet" type="text/css" href="css/adds.css">
 		
 		</head>
       

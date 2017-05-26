@@ -2,26 +2,37 @@
 require_once("../Modele/db_connect.php");
 require_once("../Modele/tournament.php");
 require_once("../Modele/course.php");
-require_once("../Controller/tools.php");
+require_once("../Controller/cont_tools.php");
 require_once("../Modele/user.php");
 require_once('../Modele/registration.php');
-require_once("../Controller/tools_regist_manag.php");
+//require_once("../Controller/cont_tools_regist_manag.php");
+require_once("./footer_management.php");
+require_once("../Modele/category.php");
+
+?>
+ 
+<?php
+
 
     $db = db_connection();
     
-    $req = $db->prepare('SELECT MAX(score) AS scoremax
-                        FROM make
-                        WHERE numCourse =1');
+    $req = $db->prepare('SELECT reg.numReg
+                        FROM registration AS reg, make, tournament AS tou
+                        WHERE reg.numTourn = 15
+							AND reg.paid = 1
+							AND (reg.parentAut != 0 OR reg.parentaut IS NULL)
+                            AND make.numReg = reg.numReg
+                            AND tou.numTourn = course.numTourn
+                            AND NOT EXISTS(make.numCourse = 4)
+                        ');
+						
     
     
     $req->execute();
     $data = $req->fetchall(PDO::FETCH_OBJ);
 
     print_r($data);
-    
-	print_r($data[0]);
-	print_r($data[0] -> scoremax);
-
+ 
 /* for($i = 0; $i<sizeof($numRegNotPaid); $i++)
 {
     echo $numRegNotPaid[$i]; 

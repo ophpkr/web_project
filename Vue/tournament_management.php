@@ -42,7 +42,7 @@
     <div class="col s12 m9 l7 offset-m4 offset-l4">
     <div class="card horizontal s3 m9 l7">
       <div class="card-image cardheight">
-        <img src= "./image/windsurf3.png">
+        <img src= "image/windsurf3.png">
       </div>
       <div class="card-stacked">
         <div class="card-content">
