@@ -5,7 +5,7 @@
 
 function setRegistration($numpermit, $paraut, $numcont, $numtourn, $numcat)
 {
-    print_r(array($numpermit, $paraut, $numcont, $numtourn, $numcat));
+
     $db = db_connection();
 
     $req = $db -> prepare('INSERT INTO registration(numPermit, parentAut, paid, numCont, numTourn, numCat)
@@ -51,9 +51,7 @@ function regPaid($numtourn)
     
 }
 
-/*
- *return numReg, name, firstName of contestants having not paid the registration
- */
+
 function regNotPaid($numtourn)
 {
     $db = db_connection();
@@ -74,9 +72,7 @@ function regNotPaid($numtourn)
     
 }
 
-/*
- *update bib of a contestant for a tournament
- */
+ 
 function setBib($bib, $numreg)
 {
     $db = db_connection();
@@ -119,9 +115,7 @@ function getMaxBib($numcourtourn)
 }
 
 
-/*
- *update paid at 1 i.e. the contestant has paid his registration
- */
+
 function setPaid($numreg)
 {
     $db = db_connection();
@@ -144,9 +138,7 @@ function setPaid($numreg)
     
 }
 
-/*
- *returns minor having not given their parental authorisation
- */
+
 function notAP($numtourn)
 {
     $db = db_connection();
@@ -168,10 +160,6 @@ function notAP($numtourn)
     
 }
 
-/*
- *returns minor having given their parental authorisation
- */
-
 function hasAP($numtourn)
 {
     $db = db_connection();
@@ -192,9 +180,7 @@ function hasAP($numtourn)
     
 }
 
-/*
- * update parentAut at 1 i.e. parental authorisation has been given 
- */
+
 
 function setAutPar($numreg)
 {
@@ -218,9 +204,6 @@ function setAutPar($numreg)
     
 }
 
-/*
- *returns registrations ended
- */
 
 function getRegistrationOk($numtourn)
 {

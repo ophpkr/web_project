@@ -7,7 +7,7 @@
             <a href= "../Controller/cont_deconnect.php" >Déconnexion</a>
         </li>
         <li class= "logo">
-            <a href= "./tournament_management.php" class= "brand-logo">Gestion des compétitions</a>
+            <a href= "tournament_management.php" class= "brand-logo">Gestion des compétitions</a>
         </li>
         
         <li class="no-padding">

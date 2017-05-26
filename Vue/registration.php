@@ -1,5 +1,6 @@
 <?php include("./header_homepage.php"); ?>
 <?php require_once("../Controller/cont_tools.php"); ?>
+<?php require_once('../Controller/cont_tools_regist_manag.php'); ?>
 
 <?php if(isset($_GET['msg']))
       {echo $msg;} ?>
@@ -16,7 +17,7 @@
 
 
           <div class="row">
-            <form method="POST" action = "../Controller/cont_registration_contestant.php" class="col s12 m8 l6 offset-m2 offset-l3">
+            <form method="POST" action = "../Controller/oldcont.php" class="col s12 m8 l6 offset-m2 offset-l3">
               <div class="row">
                 <div class="input-field s12">
                   <i class="material-icons prefix">account_circle</i>

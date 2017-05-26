@@ -38,11 +38,10 @@
                     <td><?php echo $fNameRegOk[$i]; ?></td>
                     <td><?php echo $numRegOk[$i]; ?></td>
                     <td>
-                        <form method="POST" action = "../Controller/cont_tournament_paid.php" >
-                            <input type= "hidden" name= "numreg" value = "<?php echo $numContRegOk[$i] ; ?>"></input>
-                            <button class = "waves-effect waves-light btn orange lighten-1" type="submit">Voir</button>
-                        </form>
-                    </td>
+                            <a class="waves-effect waves-light" href="<?php echo '#modseecontok' . $numRegOk[$i]; ?>">
+                                <i class="material-icons">description</i>
+                            </a>
+                        </td>
                 </tr>
                 
             <?php } ?>
@@ -70,6 +69,23 @@
     </div> 
 
     <?php }?>
+    
+     <?php for($i = 0; $i<sizeof($numRegOk); $i++)
+        {?>
+        <div id="<?php echo 'modseecontok' . $numRegOk[$i]; ?>" class="modal">
+            <div class="modal-content">
+                <h4>Description :</h4>
+                <p><?php echo $nameRegOk[$i] . ' ' . $nameRegOk[$i] . ' (' . $sexeRegOk[$i] . ')'; ?></p>
+                <p><?php echo $streetRegOk[$i]; ?></p>
+                <p><?php echo $pcodeRegOk[$i] . ' ' . $cityRegOk[$i]; ?></p>
+                <p><?php echo $mailRegOk[$i]; ?></p>
+                <p><?php echo $telNumRegOk[$i]; ?></p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"></a>
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+            </div>
+        </div> <?php } ?>
     
     <?php }else{ ?>
         <div>               

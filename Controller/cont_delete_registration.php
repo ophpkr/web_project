@@ -6,6 +6,6 @@
 deleteRegistration($_GET['numreg']);
 
 header('Location : ../Vue/registration_management.php'); 
-
+exit();
 
 ?>
